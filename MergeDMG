@@ -1,0 +1,77 @@
+#!/bin/bash
+
+# usage: MergeDMG <tmpdir> <template> <output> <source files dirs...>
+
+set -avxe
+
+DMG_SCRATCH_DIR="$1"
+DMG_TEMPLATE="$2"
+DMG_OUTPUT="$3"
+shift; shift; shift;
+
+if [ ! -d "$DMG_SCRATCH_DIR" ]; then
+	echo "error: $DMG_SCRATCH_DIR does not exist" >&2
+	exit 1
+fi
+
+if [ ! -e "$DMG_TEMPLATE" ]; then
+	echo "$DMG_TEMPLATE does not exist" >&2
+	exit 1
+fi	
+
+if [ -e "$DMG_OUTPUT".tmp.dmg ]; then
+	rm "$DMG_OUTPUT".tmp.dmg || exit 1
+fi
+
+DMG_MOUNT_POINT="$TMPDIR"/MountPoint."$$"
+
+if [ -d "$DMG_MOUNT_POINT" ]; then
+	rmdir "$DMG_MOUNT_POINT" || exit 1
+fi
+mkdir "$DMG_MOUNT_POINT" || exit 1
+
+if [ -e "$DMG_SCRATCH_DIR"/DMGShadow ]; then
+	rm "$DMG_SCRATCH_DIR"/DMGShadow || exit 1
+fi
+
+hdiutil attach "$DMG_TEMPLATE" \
+	-readwrite \
+	-shadow "$DMG_SCRATCH_DIR"/DMGShadow \
+	-mountpoint "$DMG_MOUNT_POINT" \
+	-nobrowse \
+	|| exit 1
+
+for ITEM in "$DMG_MOUNT_POINT"/*; do
+	COPIED=NO
+	for SOURCE in "$@"; do
+		if [ "$COPIED" == "NO" ]; then
+			ITEM_BASENAME="`basename "$ITEM"`"
+			if [ -d "$SOURCE"/"$ITEM_BASENAME" ]; then
+				rsync -avE --exclude="*/.svn" "$SOURCE"/"$ITEM_BASENAME" "$DMG_MOUNT_POINT"
+				COPIED=YES
+			elif [ -f "$SOURCE"/"$ITEM_BASENAME" ]; then
+				cp -fv "$SOURCE"/"$ITEM_BASENAME" "$DMG_MOUNT_POINT"/"$ITEM_BASENAME"
+				COPIED=YES
+			fi
+		fi
+	done
+	
+	if [ "$COPIED" == "NO" ]; then
+		echo "error: Found no appropriate correspondence for $ITEM in the source folders." >&2
+		exit 1
+	fi
+done
+
+sync
+
+hdiutil eject "$DMG_MOUNT_POINT" || exit 1
+rmdir "$DMG_MOUNT_POINT" || exit 1
+
+hdiutil convert "$DMG_TEMPLATE" \
+	-o "$DMG_OUTPUT".tmp.dmg \
+	-format UDZO \
+	-imagekey zlib-level=9 \
+	-shadow "$DMG_SCRATCH_DIR"/DMGShadow \
+	|| exit 1
+
+mv "$DMG_OUTPUT".tmp.dmg "$DMG_OUTPUT" || exit 1

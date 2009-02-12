@@ -1,0 +1,79 @@
+#!/usr/bin/env ruby
+
+require 'find'
+
+SRCROOT = ENV['SRCROOT'] || '.'
+ISO_NAMED_DIR = File.join(SRCROOT, 'en.lproj')
+NEXT_NAMED_DIR = File.join(SRCROOT, 'English.lproj')
+
+BASE_LOCALE_DIR =
+  (ENV['BASE_LOCALE_DIR']) ||
+  (NEXT_NAMED_DIR if File.directory? NEXT_NAMED_DIR) ||
+  (ISO_NAMED_DIR if File.directory? ISO_NAMED_DIR)
+  
+TARGET = ENV['TARGET']
+if not TARGET
+  $stderr << "error: No target directory found to save the collected strings in. Set one via the TARGET environment variable.\n"
+  exit 1
+end
+
+def run_and_wait(*args)
+  fork do
+    exec(*args)
+  end
+  Process.wait
+end
+
+filesToRunGenstringsOn = []
+
+# argv = ARGV.empty? ? %w{.} : ARGV
+Find.find(SRCROOT) do |file|
+  fileName = File.basename file
+  case fileName
+  when /\.m$/, /.c$/
+    filesToRunGenstringsOn << file
+  when /\.alert$/
+    require 'osx/cocoa'
+    # L0Alert files we know the format ourselves :)
+    alertContents = OSX::NSDictionary.dictionaryWithContentsOfFile(file)
+    
+    alertStrings = {}
+    
+    message = alertContents['L0AlertMessage']
+    alertStrings[message] = message if message
+    
+    informativeText = alertContents['L0AlertInformativeText']
+    alertStrings[informativeText] = informativeText if informativeText
+    
+    if alertContents['L0AlertButtons']
+      alertContents['L0AlertButtons'].each do |button|
+        alertStrings[button] = button
+      end
+    end
+    
+    suppressionButtonTitle = alertContents['L0AlertSuppressionButtonTitle']
+    alertStrings[suppressionButtonTitle] = suppressionButtonTitle if suppressionButtonTitle
+    
+    alertStringsAsNSDictionary = OSX::NSDictionary.dictionaryWithDictionary(alertStrings)
+    stringsFileContents = alertStringsAsNSDictionary.descriptionInStringsFileFormat
+    
+    stringsFile = File.join TARGET_DIR, fileName[0, fileName.length - 'alert'.length] + 'strings'
+    File.open(stringsFile, 'w') do |io|
+      io << stringsFileContents
+    end
+  end
+end
+
+Find.find(BASE_LOCALE_DIR) do |file|
+  
+  if file =~ /\.nib$/ or file =~ /.xib$/ and not (File.dirname(file) =~ /\.nib$/)
+    fileName = File.basename(file)
+    stringFile = File.join TARGET_DIR, fileName + '.strings'
+    run_and_wait '/usr/bin/ibtool', '--generate-strings-file', stringFile, file
+  end
+  
+end
+
+command_line = ['/usr/bin/genstrings', '-o', TARGET_DIR]
+command_line.push(*filesToRunGenstringsOn)
+run_and_wait(*command_line)

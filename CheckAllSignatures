@@ -1,0 +1,22 @@
+#!/bin/bash
+
+TARGET="$1"
+MODIFIED_FILES_FOUND=NO
+
+find "$TARGET" -name _CodeSignature -and \( -not -path \*.dSYM/\* \) | while read line; do
+	if ! codesign -vvvvv "$line"/../..; then
+		echo "error: Detected modification in respect to signature $line." >&2
+		MODIFIED_FILES_FOUND=YES
+	fi
+done
+
+find "$TARGET" -name \*.dylib -and \( -not -path \*.dSYM/\* \) | while read line; do
+	if ! codesign -vvvvv "$line"; then
+		echo "error: Detected modification in signed file $line." >&2
+		MODIFIED_FILES_FOUND=YES
+	fi
+done
+
+if [ "$MODIFIED_FILES_FOUND" == "YES" ]; then
+	exit 1
+fi

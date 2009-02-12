@@ -1,0 +1,13 @@
+#!/bin/bash
+
+set -av
+
+BUILT_PRODUCTS_DIR="$1"
+INFINITELABS_MAC_CODE_SIGNING_IDENTITY="Infinite Labs Code Signing (Mac OS X)"
+
+cd "$BUILT_PRODUCTS_DIR"
+
+for i in "`cat "$SRCROOT"/CodeSigningList`"; do
+	codesign -s "$INFINITELABS_MAC_CODE_SIGNING_IDENTITY" -f -vvvvv "$i" || exit 1
+done
+

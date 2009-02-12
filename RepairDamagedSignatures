@@ -1,0 +1,18 @@
+#!/bin/bash
+
+TARGET="$1"
+
+find "$TARGET" -name _CodeSignature | while read line; do
+	if ! codesign -vvvvv "$line"/../..; then
+		echo "note: Detected modification in respect to signature $line. Resigning." >&2
+		codesign -s "$INFINITELABS_CODE_SIGNING_IDENTITY" -f -vvvvv "$line"/../..
+	fi
+done
+
+find "$TARGET" -name \*.dylib | while read line; do
+	if ! codesign -vvvvv "$line"; then
+		echo "note: Detected modification in signed file $line. Resigning." >&2
+		codesign -s "$INFINITELABS_CODE_SIGNING_IDENTITY" -f -vvvvv "$line"
+	fi
+done
+

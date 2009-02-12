@@ -1,0 +1,7 @@
+These tools are part of the ∞labs "Multiverse" build infrastructure. They're shared among all ∞labs projects and are required to build most of its released products.
+
+To use these tools, check them out, then set up a new source tree called INFINITELABS_TOOLS in Xcode > Preferences > Source Trees. You can also specify the path to a single command-line xcodebuild invocation by specifying the INFINITELABS_TOOLS setting this way:
+
+	xcodebuild clean build INFINITELABS_TOOLS=/path/to/checkout
+	
+Enjoy!

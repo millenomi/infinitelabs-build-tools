@@ -1,0 +1,51 @@
+#!/bin/bash
+
+# Sign -- calls codesign to perform code signing, working around what's not implemented in Xcode 3.1.1 CODE_SIGN* settings.
+
+# Usage: During an Xcode build (otherwise, set BUILT_PRODUCTS_PATH and FULL_PRODUCT_NAME to correct values and CONFIGURATION to anything beginning with 'Release', verbatim). Requires INFINITELABS_CODE_SIGNING_IDENTITY to be defined and equal to the identity you want to use in signing.
+# If $SRCROOT/$TARGETNAME-SigningList exists, each line will be interpreted as a different relative path inside the FULL_PRODUCT_NAME (for wrappers) and signed with the same key. Empty lines and lines starting with # are ignored in that file.
+
+if [ "${CONFIGURATION:0:7}" != "Release" ]; then
+	echo "Not signing non-release code (use a configuration starting with Release to enable signing)."
+	exit 0
+fi
+
+if [ "$DISABLE_CODE_SIGNING" == "YES" ]; then
+	echo "warning: Code not signed because code signing is explicitly disabled. Set DISABLE_CODE_SIGNING to NO to re-enable it." >&2
+	exit 0
+fi
+
+SIGNED_PRODUCT="$BUILT_PRODUCTS_DIR"/"$FULL_PRODUCT_NAME"
+echo "note: signing product." >&2
+codesign -s "$INFINITELABS_CODE_SIGNING_IDENTITY" -f -vvvvv "$SIGNED_PRODUCT" || exit 1
+
+if [ -f "$SRCROOT"/"$TARGETNAME"-SigningList ]; then
+	while read line; do
+		if [ "$line" != "" -a "${line:0:1}" != '#' ]; then
+	    	echo "note: signing file $SIGNED_PRODUCT/$line from the code signing list." >&2
+			codesign -s "$INFINITELABS_CODE_SIGNING_IDENTITY" -f -vvvvv "$SIGNED_PRODUCT"/"$line"
+		fi
+	done < "$SRCROOT"/"$TARGETNAME"-SigningList
+fi
+
+# Check that the file's contained sub-items, if any, are still signed and valid.
+
+if [ -d "$SIGNED_PRODUCT" ]; then
+	find "$SIGNED_PRODUCT" -name _CodeSignature | while read line; do
+		if ! codesign -vvvvv "$line"/../..; then
+			echo "note: Detected modification in respect to signature $line. Resigning." >&2
+			codesign -s "$INFINITELABS_CODE_SIGNING_IDENTITY" -f -vvvvv "$line"/../..
+		fi
+	done
+
+	find "$SIGNED_PRODUCT" -name \*.dylib | while read line; do
+		if ! codesign -vvvvv "$line"; then
+			echo "note: Detected modification in signed file $line. Resigning." >&2
+			codesign -s "$INFINITELABS_CODE_SIGNING_IDENTITY" -f -vvvvv "$line"
+		fi
+	done
+fi
+
+if [ "$MODIFIED_FILES_FOUND" == "YES" ]; then
+	exit 1
+fi
