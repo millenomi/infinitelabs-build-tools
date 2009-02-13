@@ -1,6 +1,8 @@
 #!/usr/bin/env ruby
 
 require 'find'
+require 'yaml'
+require 'osx/cocoa'
 
 SRCROOT = ENV['SRCROOT'] || '.'
 ISO_NAMED_DIR = File.join(SRCROOT, 'en.lproj')
@@ -33,7 +35,6 @@ Find.find(SRCROOT) do |file|
   when /\.m$/, /\.c$/
     filesToRunGenstringsOn << file
   when /\.alert$/
-    require 'osx/cocoa'
     # L0Alert files we know the format ourselves :)
     alertContents = OSX::NSDictionary.dictionaryWithContentsOfFile(file)
     
@@ -60,6 +61,22 @@ Find.find(SRCROOT) do |file|
     stringsFile = File.join TARGET, fileName[0, fileName.length - 'alert'.length] + 'strings'
     File.open(stringsFile, 'w') do |io|
       io << stringsFileContents
+    end
+    
+  when /\.loc\.yaml$/
+    File.open(file) do |file_io|
+      YAML::each_document(file_io) do |contents|
+        dict = OSX::NSMutableDictionary.dictionary
+        contents.each_key do |k|
+          dict[k] = contents[k]
+        end
+        
+        stringsFile = File.join TARGET, fileName[0, fileName.length - 'loc.yaml'.length] + 'strings'
+        
+        File.open(stringsFile, 'w') do |io|
+          io << dict.descriptionInStringsFileFormat
+        end
+      end
     end
   end
 end
