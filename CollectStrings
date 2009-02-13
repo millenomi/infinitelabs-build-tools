@@ -30,7 +30,7 @@ filesToRunGenstringsOn = []
 Find.find(SRCROOT) do |file|
   fileName = File.basename file
   case fileName
-  when /\.m$/, /.c$/
+  when /\.m$/, /\.c$/
     filesToRunGenstringsOn << file
   when /\.alert$/
     require 'osx/cocoa'
