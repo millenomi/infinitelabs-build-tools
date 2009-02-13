@@ -57,7 +57,7 @@ Find.find(SRCROOT) do |file|
     alertStringsAsNSDictionary = OSX::NSDictionary.dictionaryWithDictionary(alertStrings)
     stringsFileContents = alertStringsAsNSDictionary.descriptionInStringsFileFormat
     
-    stringsFile = File.join TARGET_DIR, fileName[0, fileName.length - 'alert'.length] + 'strings'
+    stringsFile = File.join TARGET, fileName[0, fileName.length - 'alert'.length] + 'strings'
     File.open(stringsFile, 'w') do |io|
       io << stringsFileContents
     end
@@ -68,12 +68,12 @@ Find.find(BASE_LOCALE_DIR) do |file|
   
   if file =~ /\.nib$/ or file =~ /.xib$/ and not (File.dirname(file) =~ /\.nib$/)
     fileName = File.basename(file)
-    stringFile = File.join TARGET_DIR, fileName + '.strings'
+    stringFile = File.join TARGET, fileName + '.strings'
     run_and_wait '/usr/bin/ibtool', '--generate-strings-file', stringFile, file
   end
   
 end
 
-command_line = ['/usr/bin/genstrings', '-o', TARGET_DIR]
+command_line = ['/usr/bin/genstrings', '-o', TARGET]
 command_line.push(*filesToRunGenstringsOn)
 run_and_wait(*command_line)
