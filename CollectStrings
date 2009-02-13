@@ -1,6 +1,7 @@
 #!/usr/bin/env ruby
 
 require 'find'
+require 'fileutils'
 require 'yaml'
 require 'osx/cocoa'
 
@@ -28,8 +29,12 @@ end
 
 filesToRunGenstringsOn = []
 
+TARGET_FULL = File.expand_path(TARGET)
+
 # argv = ARGV.empty? ? %w{.} : ARGV
 Find.find(SRCROOT) do |file|
+  next if File.expand_path(file)[0, TARGET_FULL.length] == TARGET_FULL
+  
   fileName = File.basename file
   case fileName
   when /\.m$/, /\.c$/
@@ -78,6 +83,11 @@ Find.find(SRCROOT) do |file|
         end
       end
     end
+  
+  when /\.loc\./
+    target = File.join(TARGET, fileName)
+    FileUtils.rm target if File.exist? target
+    FileUtils.cp file, target
   end
 end
 
