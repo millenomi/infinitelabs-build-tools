@@ -21,9 +21,9 @@ localesDir = ENV['LOCALES_DIR'] || File.join(ENV['SRCROOT'], 'Locales')
 
 locales = []
 Dir.open(localesDir) do |d|
-  # non-hidden (non-.) directories are locales
+  # non-hidden (non-.) directories, and dirs not starting with '_' are locales
   locales = d.entries.select { 
-    |x| x.match(/^[^.]/) and File.directory?(File.join(localesDir, x))
+    |x| x.match(/^[^\._]/) and File.directory?(File.join(localesDir, x))
     }
 end
 
@@ -55,8 +55,8 @@ end
 
 Dir.open(dirPath).each do |file|
   fullFilePath = File.join(dirPath, file)
-  case file
-    
+  
+  case file  
   when /\.nib$/, /\.xib$/
     
     # This is slightly tricky. We need ibtool to run and
@@ -122,5 +122,30 @@ Dir.open(dirPath).each do |file|
         end
       end
     end
+    
+  when /^[^.]/ # another kind of file not starting with a dot. we don't work with hidden files!
+    compiledLocaleDirs.each do |locale, compiledLocaleDir|
+      localizedArbitraryFile = File.join(localesDir, locale, file)
+      
+      # So: if BASE/xyz exists, and Locales/ab/xyz exists,
+      # we want to copy the latter into target/ab.lproj/xyz IF
+      # the compiled one does not exist OR is newer.
+      
+      if File.exist? localizedArbitraryFile
+        compiledFile = File.join(compiledLocaleDir, file)
+        
+        if File.exist? compiledFile and File.stat(compiledFile).mtime < File.stat(fullFilePath).mtime
+          $stderr.puts "note: Removing file #{compiledFile} because the source file #{fullFilePath} is updated."
+          File.delete compiledFile
+        end
+      
+        unless File.exist? compiledFile
+          $stderr.puts "note: #{compiledFile} does not exist, copying from source."
+          FileUtils.cp localizedArbitraryFile, compiledFile
+        end
+        
+      end
+    end
   end
+
 end

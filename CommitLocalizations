@@ -1,0 +1,46 @@
+#!/usr/bin/env ruby
+
+require 'fileutils'
+require 'osx/cocoa'
+require 'yaml'
+
+SRCROOT = ENV['SRCROOT'] || '.'
+LOCALES_DIR = ENV['LOCALES_DIR'] || File.join(SRCROOT, 'Locales')
+
+Dir.open(LOCALES_DIR) do |d|
+  # non-hidden (non-.) directories, and dirs not starting with '_' are locales
+  LOCALES = d.entries.select do |x|
+    x.match(/^[^\._]/) and File.directory?(File.join(LOCALES_DIR, x))
+  end
+end
+
+LOCALES.each do |l|
+  locale_dir = File.join(LOCALES_DIR, l)
+  
+  locale_yaml_file = File.join(LOCALES_DIR, l + ".yaml")
+  if File.exist? locale_yaml_file
+    committed_localizations = YAML::load_file(locale_yaml_file)
+  else
+    committed_localizations = {}
+  end
+  
+  Dir.open(locale_dir).each do |file|
+    next unless file =~ /\.strings$/
+    
+    its_strings = committed_localizations[file]
+    if not its_strings
+      its_strings = {}
+      committed_localizations[file] = its_strings
+    end
+    
+    d = OSX::NSDictionary.dictionaryWithContentsOfFile File.join(locale_dir, file)
+    
+    d.each { |k, v| its_strings[k.to_s] = v.to_s }
+  end
+  
+  File.open(locale_yaml_file, 'w') do |file|
+    file << YAML::dump(committed_localizations)
+  end
+end
+
+
