@@ -1,0 +1,7 @@
+// Precompiled header for UIKit (iPhone) applications.
+
+#import "Common.h"
+
+#ifdef __OBJC__
+	#import <UIKit/UIKit.h>
+#endif
