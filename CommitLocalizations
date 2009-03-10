@@ -15,6 +15,8 @@ Dir.open(LOCALES_DIR) do |d|
 end
 
 LOCALES.each do |l|
+  next if ARGV.length > 0 and not ARGV.include? l
+  
   locale_dir = File.join(LOCALES_DIR, l)
   
   locale_yaml_file = File.join(LOCALES_DIR, l + ".yaml")
