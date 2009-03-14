@@ -1,0 +1,33 @@
+#!/bin/bash
+
+HERE="`dirname "$0"`"
+. "$HERE"/Internal/Common.bash
+
+QUIET=NO
+if [ "$1" == "-q" -o "$1" == "--quiet" ]; then
+	QUIET=YES
+	shift
+fi
+
+STYLE_NAME="$1"
+shift
+
+if [ "$STYLE_NAME" == "" ]; then
+	echo "error: No style specified." >&2
+	echo "Usage: Unified/SetStyle [-q | --quiet] <style name> [project]" >&2
+	exit 1
+fi
+
+# get INFINITELABS_UNIFIED_PROJECT_DIR from $1.
+. "$HERE"/Internal/Project.bash
+
+if [ "$STYLE_NAME" == "Internal" ]; then
+	echo "error: 'Internal' is reserved for internal use by the unified tools. Use another style." >&2
+	exit 1
+fi
+
+echo "$STYLE_NAME" > "$INFINITELABS_UNIFIED_PROJECT_DIR"/ProjectStyle || exit 1
+
+if [ "$QUIET" != "YES" ]; then
+	echo "Style of project at path $INFINITELABS_UNIFIED_PROJECT_DIR set to $STYLE_NAME."
+fi

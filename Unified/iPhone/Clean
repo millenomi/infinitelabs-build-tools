@@ -1,0 +1,21 @@
+#!/bin/bash
+
+. "$INFINITELABS_UNIFIED_DIR"/Internal/CommonFunctions.bash
+. "$INFINITELABS_UNIFIED_DIR"/iPhone/BuildOptions.bash
+
+# Assumes one .xcodeproj file only (subprojects in subdirectories!).
+# Also assumes that the build settings are such that the Device SDK is set
+# as the default.
+
+xcodebuild \
+	-project "$INFINITELABS_UNIFIED_PROJECT_DIR"/*.xcodeproj \
+	-configuration "Debug" \
+	clean || exit 1
+xcodebuild \
+	-project "$INFINITELABS_UNIFIED_PROJECT_DIR"/*.xcodeproj \
+	-configuration "Ad Hoc" \
+	clean || exit 1
+xcodebuild \
+	-project "$INFINITELABS_UNIFIED_PROJECT_DIR"/*.xcodeproj \
+	-configuration "App Store" \
+	clean || exit 1
