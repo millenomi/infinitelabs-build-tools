@@ -1,0 +1,14 @@
+#!/bin/bash
+
+. "$INFINITELABS_UNIFIED_DIR"/Internal/CommonFunctions.bash
+. "$INFINITELABS_UNIFIED_DIR"/Xcode/BuildOptions.bash
+
+# Assumes one .xcodeproj file only (subprojects in subdirectories!).
+
+for STYLE in "${STYLES[@]}"; do
+	(cd "$INFINITELABS_UNIFIED_PROJECT_DIR" && \
+		xcodebuild -configuration "$STYLE" "${ACTIONS[@]}" "${BUILD_SETTINGS[@]}" \
+	) || exit 1
+done
+
+

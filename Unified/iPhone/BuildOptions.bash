@@ -2,7 +2,9 @@
 
 FAST=NO
 STYLES=()
-ALL_STYLES=( Debug AdHoc AppStore )
+ALL_STYLES=( Debug "Ad Hoc" "App Store" )
+BUILD_SETTINGS=( INFINITELABS_TOOLS="$INFINITELABS_UNIFIED_DIR"/.. )
+
 while [ "$1" != "" ]; do
 	case "$1" in
 		--fast|-f)
@@ -14,15 +16,13 @@ while [ "$1" != "" ]; do
 			shift
 			;;
 			
-		--iphone-local)
-			ILUnifiedLog "Will load local settings at: "$INFINITELABS_UNIFIED_DIR"/iPhone/BuildOptions-Local.bash"
-		
-			if [ -e "$INFINITELABS_UNIFIED_DIR"/iPhone/BuildOptions-Local.bash ]; then
-				. "$INFINITELABS_UNIFIED_DIR"/iPhone/BuildOptions-Local.bash
-			else
-				echo "error: No local iPhone settings have been found. To use local settings, create a Bash script at "$INFINITELABS_UNIFIED_DIR"/iPhone/BuildOptions-Local.bash which sets the desired option values." >&2
-				exit 1
-			fi
+		--local|-L)
+			. "$INFINITELABS_UNIFIED_DIR"/Internal/CommonOptions/Local.bash
+			;;
+			
+		--xcode-setting)
+			BUILD_SETTINGS=( "${BUILD_SETTINGS[@]}" "$2" )
+			shift
 			;;
 		
 		--iphone-app-store-profile)
@@ -46,7 +46,7 @@ while [ "$1" != "" ]; do
 			;;
 			
 		--all|-a)
-			STYLES="${ALL_STYLES[@]}"
+			STYLES=( "${ALL_STYLES[@]}" )
 			;;
 			
 		--debug|-d)
@@ -87,12 +87,10 @@ else
 fi
 
 if [ "${#STYLES[@]}" == "0" ]; then
-	STYLES="${ALL_STYLES[@]}"
+	STYLES=( "${ALL_STYLES[@]}" )
 fi
 
-BUILD_SETTINGS=( INFINITELABS_TOOLS="$INFINITELABS_UNIFIED_DIR"/.. )
-
-ILUnifiedLog "Will build with styles: ${STYLES[@]}"
-ILUnifiedLog "Will build with actions: ${ACTIONS[@]}"
+ILUnifiedLog "Will build with styles (${#STYLES[@]}): ${STYLES[@]}"
+ILUnifiedLog "Will build with actions (${#ACTIONS[@]}): ${ACTIONS[@]}"
 ILUnifiedLog "Will build with development identity '$DEVELOPMENT_IDENTITY', development profile '$DEVELOPMENT_PROFILE' (empty means default)"
 ILUnifiedLog "Will build with distribution identity '$DISTRIBUTION_IDENTITY', development profiles: ad hoc '$AD_HOC_PROFILE', App Store '$APP_STORE_PROFILE' (empty means default)"

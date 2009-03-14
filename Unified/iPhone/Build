@@ -36,7 +36,7 @@ for STYLE in "${STYLES[@]}"; do
 			
 			;;
 		
-		AdHoc)
+		"Ad Hoc")
 
 			# Device, Ad Hoc
 
@@ -64,7 +64,7 @@ for STYLE in "${STYLES[@]}"; do
 
 			;;
 			
-		AppStore)
+		"App Store")
 			
 			# Device, App Store
 
@@ -89,6 +89,11 @@ for STYLE in "${STYLES[@]}"; do
 				"${ACTIONS[@]}" \
 				"${APP_STORE_BUILD_SETTINGS[@]}") || exit 1
 				
+			;;
+			
+		*)
+			echo "error: Unknown build style $STYLE" >&2
+			exit 1
 			;;
 	esac
 done

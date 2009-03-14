@@ -1,7 +1,7 @@
 #!/bin/bash
 
 . "$INFINITELABS_UNIFIED_DIR"/Internal/CommonFunctions.bash
-. "$INFINITELABS_UNIFIED_DIR"/iPhone/BuildOptions.bash
+. "$INFINITELABS_UNIFIED_DIR"/Xcode/BuildOptions.bash
 
 # Assumes one .xcodeproj file only (subprojects in subdirectories!).
 
