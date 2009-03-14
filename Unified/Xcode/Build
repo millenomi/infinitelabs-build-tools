@@ -5,9 +5,11 @@
 
 # Assumes one .xcodeproj file only (subprojects in subdirectories!).
 
+TARGET="`basename "$INFINITELABS_UNIFIED_PROJECT_DIR"/*.xcodeproj .xcodeproj`"
+
 for STYLE in "${STYLES[@]}"; do
 	(cd "$INFINITELABS_UNIFIED_PROJECT_DIR" && \
-		xcodebuild -configuration "$STYLE" "${ACTIONS[@]}" "${BUILD_SETTINGS[@]}" \
+		xcodebuild -target "$TARGET" -configuration "$STYLE" "${ACTIONS[@]}" "${BUILD_SETTINGS[@]}" \
 	) || exit 1
 done
 

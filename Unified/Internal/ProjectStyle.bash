@@ -1,5 +1,7 @@
 #!/bin/bash
 
+ILUnifiedLog "Will read the style from $INFINITELABS_UNIFIED_PROJECT_DIR/ProjectStyle"
+
 if [ ! -f "$INFINITELABS_UNIFIED_PROJECT_DIR"/ProjectStyle ]; then
 	echo "error: The project has no set style. Use Unified/SetStyle <style> to set the style." >&2
 	exit 1

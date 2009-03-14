@@ -7,6 +7,8 @@
 # Also assumes that the build settings are such that the Device SDK is set
 # as the default.
 
+TARGET="`basename "$INFINITELABS_UNIFIED_PROJECT_DIR"/*.xcodeproj .xcodeproj`"
+
 for STYLE in "${STYLES[@]}"; do
 	case "$STYLE" in
 		Debug)
@@ -30,6 +32,7 @@ for STYLE in "${STYLES[@]}"; do
 
 			(cd "$INFINITELABS_UNIFIED_PROJECT_DIR" && \
 			xcodebuild \
+				-target "$TARGET" \
 				-configuration "Debug" \
 				"${ACTIONS[@]}" \
 				"${DEBUG_BUILD_SETTINGS[@]}") || exit 1
@@ -57,6 +60,7 @@ for STYLE in "${STYLES[@]}"; do
 
 			(cd "$INFINITELABS_UNIFIED_PROJECT_DIR" && \
 			xcodebuild \
+				-target "$TARGET" \
 				-configuration "Ad Hoc" \
 				"${ACTIONS[@]}" \
 				"${AD_HOC_BUILD_SETTINGS[@]}") || exit 1
@@ -85,6 +89,7 @@ for STYLE in "${STYLES[@]}"; do
 
 			(cd "$INFINITELABS_UNIFIED_PROJECT_DIR" && \
 			xcodebuild \
+				-target "$TARGET" \
 				-configuration "App Store" \
 				"${ACTIONS[@]}" \
 				"${APP_STORE_BUILD_SETTINGS[@]}") || exit 1

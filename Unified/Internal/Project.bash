@@ -6,3 +6,4 @@ if [ "$INFINITELABS_UNIFIED_PROJECT_DIR" == "" ]; then
 else
 	shift
 fi
+ILUnifiedLog "Project directory set to $INFINITELABS_UNIFIED_PROJECT_DIR"
