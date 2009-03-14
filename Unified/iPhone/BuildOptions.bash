@@ -54,7 +54,7 @@ while [ "$1" != "" ]; do
 			;;
 			
 		--release|-r)
-			STYLES=( "${STYLES[@]}" AdHoc AppStore )
+			STYLES=( "${STYLES[@]}" "Ad Hoc" "App Store" )
 			;;
 			
 		--style|-s)
@@ -63,12 +63,12 @@ while [ "$1" != "" ]; do
 			;;
 			
 		--iphone-ad-hoc)
-			STYLES=( "${STYLES[@]}" AdHoc )
+			STYLES=( "${STYLES[@]}" "Ad Hoc" )
 			shift
 			;;
 			
 		--iphone-app-store)
-			STYLES=( "${STYLES[@]}" AppStore )
+			STYLES=( "${STYLES[@]}" "App Store" )
 			shift
 			;;
 			
