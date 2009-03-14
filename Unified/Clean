@@ -3,6 +3,6 @@
 HERE="`dirname "$0"`"
 . "$HERE"/Internal/Common.bash
 . "$HERE"/Internal/Project.bash
-. "$HERE"/Internal/Style.bash
+. "$HERE"/Internal/ProjectStyle.bash
 
 ILUnifiedRunByStyle Clean "$@"
