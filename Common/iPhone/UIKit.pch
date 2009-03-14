@@ -4,4 +4,29 @@
 
 #ifdef __OBJC__
 	#import <UIKit/UIKit.h>
+
+static inline CGRect L0UIKeyboardGetBounds(NSNotification* keyboardNotification) {
+	return [[[keyboardNotification userInfo] objectForKey:UIKeyboardBoundsUserInfoKey] CGRectValue];
+}
+
+static inline CGPoint L0UIKeyboardGetOriginForKeyInView(NSNotification* keyboardNotification, NSString* key, UIView* view) {
+	CGRect rect = L0UIKeyboardGetBounds(keyboardNotification);
+	CGPoint center = [[[keyboardNotification userInfo] objectForKey:key] CGPointValue];
+	
+	CGPoint origin; // in screen coordinates
+	origin.x = center.x - rect.size.width / 2;
+	origin.y = center.y - rect.size.height / 2;
+	
+	if (view)
+		origin = [view convertPoint:origin fromView:nil];
+	
+	return origin;
+}
+
+static inline CGRect L0UIKeyboardGetFrameForKey(NSNotification* keyboardNotification, NSString* key) {
+	CGRect frame = L0UIKeyboardGetBounds(keyboardNotification);
+	frame.origin = L0UIKeyboardGetOriginForKeyInView(keyboardNotification, key, nil);
+	return frame;
+}
+
 #endif
