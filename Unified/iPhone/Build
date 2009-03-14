@@ -28,11 +28,11 @@ for STYLE in "${STYLES[@]}"; do
 				ILUnifiedLog "Setting: $SETTING"
 			done
 
+			(cd "$INFINITELABS_UNIFIED_PROJECT_DIR" && \
 			xcodebuild \
-				-project "$INFINITELABS_UNIFIED_PROJECT_DIR"/*.xcodeproj \
 				-configuration "Debug" \
 				"${ACTIONS[@]}" \
-				"${DEBUG_BUILD_SETTINGS[@]}" || exit 1
+				"${DEBUG_BUILD_SETTINGS[@]}") || exit 1
 			
 			;;
 		
@@ -55,11 +55,11 @@ for STYLE in "${STYLES[@]}"; do
 				ILUnifiedLog "Setting: $SETTING"
 			done
 
+			(cd "$INFINITELABS_UNIFIED_PROJECT_DIR" && \
 			xcodebuild \
-				-project "$INFINITELABS_UNIFIED_PROJECT_DIR"/*.xcodeproj \
 				-configuration "Ad Hoc" \
 				"${ACTIONS[@]}" \
-				"${AD_HOC_BUILD_SETTINGS[@]}" || exit 1
+				"${AD_HOC_BUILD_SETTINGS[@]}") || exit 1
 			
 
 			;;
@@ -83,11 +83,11 @@ for STYLE in "${STYLES[@]}"; do
 				ILUnifiedLog "Setting: $SETTING"
 			done
 
+			(cd "$INFINITELABS_UNIFIED_PROJECT_DIR" && \
 			xcodebuild \
-				-project "$INFINITELABS_UNIFIED_PROJECT_DIR"/*.xcodeproj \
 				-configuration "App Store" \
 				"${ACTIONS[@]}" \
-				"${APP_STORE_BUILD_SETTINGS[@]}" || exit 1
+				"${APP_STORE_BUILD_SETTINGS[@]}") || exit 1
 				
 			;;
 	esac
