@@ -21,3 +21,7 @@ function ILUnifiedRunByStyle
 	export INFINITELABS_UNIFIED_DEBUG
 	"$ACTION_FILE" "$@"
 }
+
+if [ "$INFINITELABS_UNIFIED_DEBUG_VERBOSE" == "YES" ]; then
+	set -avx
+fi

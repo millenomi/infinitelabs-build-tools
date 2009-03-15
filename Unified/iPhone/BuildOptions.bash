@@ -64,12 +64,10 @@ while [ "$1" != "" ]; do
 			
 		--iphone-ad-hoc)
 			STYLES=( "${STYLES[@]}" "Ad Hoc" )
-			shift
 			;;
 			
 		--iphone-app-store)
 			STYLES=( "${STYLES[@]}" "App Store" )
-			shift
 			;;
 			
 		*)
