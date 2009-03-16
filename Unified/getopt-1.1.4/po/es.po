@@ -1,0 +1,240 @@
+# Spanish translation of the util-linux messages.
+# Copyright (C) 2000 Free Software Foundation, Inc.
+# <support@turbolinux.com>, 2000.
+#: getopt.c:203 getopt.c:211 getopt.c:375
+msgid ""
+msgstr ""
+"Project-Id-Version: getopt 1.1.0\n"
+"POT-Creation-Date: 2000-07-02 00:38+0200\n"
+"PO-Revision-Date: 2000-03-28 21:52-0800\n"
+"Last-Translator: Beth Powell <bpowell@turbolinux.com>\n"
+"Language-Team: <support@turbolinux.com>\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=ISO-8859-1\n"
+"Content-Transfer-Encoding: 8bit\n"
+
+#: getopt.c:89 getopt.c:99
+#, c-format
+msgid "%s: Out of memory!\n"
+msgstr "%s: No queda memoria\n"
+
+#: getopt.c:89
+msgid "getopt"
+msgstr ""
+
+#: getopt.c:99
+msgid "geopt"
+msgstr ""
+
+#: getopt.c:200
+#, c-format
+msgid " --%s"
+msgstr ""
+
+#: getopt.c:202 getopt.c:205 getopt.c:210 getopt.c:218
+#, c-format
+msgid " %s"
+msgstr ""
+
+#: getopt.c:207
+#, c-format
+msgid " -%c"
+msgstr ""
+
+#: getopt.c:216
+msgid " --"
+msgstr ""
+
+#: getopt.c:219
+msgid "\n"
+msgstr ""
+
+#: getopt.c:232
+#, fuzzy, c-format
+msgid "getopt: %s\n"
+msgstr "tipo: %s\n"
+
+#: getopt.c:233
+msgid "Try `getopt --help' for more information.\n"
+msgstr "Escriba `getopt --help' para obtener más información.\n"
+
+#: getopt.c:286 getopt.c:304
+msgid ", \t\n"
+msgstr ""
+
+#: getopt.c:299
+msgid "empty long option after -l or --long argument"
+msgstr "Opción larga vacía tras argumento -l o --long"
+
+#: getopt.c:310
+msgid "bash"
+msgstr ""
+
+#: getopt.c:312
+#, fuzzy
+msgid "tcsh"
+msgstr "nattch"
+
+#: getopt.c:314
+#, fuzzy
+msgid "sh"
+msgstr "s"
+
+#: getopt.c:316
+msgid "csh"
+msgstr ""
+
+#: getopt.c:319
+msgid "unknown shell after -s or --shell argument"
+msgstr "Intérprete de comandos desconocido tras argumento -s o --shell"
+
+#: getopt.c:324
+msgid "Usage: getopt optstring parameters\n"
+msgstr "Uso: getopt cadenaopciones parámetros\n"
+
+#: getopt.c:325
+msgid "       getopt [options] [--] optstring parameters\n"
+msgstr "       getopt [opciones] [--] cadenaopciones parámetros\n"
+
+#: getopt.c:326
+msgid "       getopt [options] -o|--options optstring [options] [--]\n"
+msgstr "       getopt [opciones] -o|--options cadenaopciones [opciones] [--]\n"
+
+#: getopt.c:327
+msgid "              parameters\n"
+msgstr "              parámetros\n"
+
+#: getopt.c:328
+msgid ""
+"  -a, --alternative            Allow long options starting with single -\n"
+msgstr ""
+"  -a, --alternative            Permitir opciones largas con un solo - "
+"inicial\n"
+
+#: getopt.c:329
+msgid "  -h, --help                   This small usage guide\n"
+msgstr "  -h, --help                   Esta pequeña guía de uso\n"
+
+#: getopt.c:330
+msgid "  -l, --longoptions=longopts   Long options to be recognized\n"
+msgstr "  -l, --longoptions=opclargas  Opciones largas para reconocer\n"
+
+#: getopt.c:331
+msgid ""
+"  -n, --name=progname          The name under which errors are reported\n"
+msgstr ""
+"  -n, --name=nombreprograma    El nombre con el que se informa de los "
+"errores\n"
+
+#: getopt.c:332
+msgid "  -o, --options=optstring      Short options to be recognized\n"
+msgstr "  -o, --options=cadenaopciones Opciones cortas para reconocer\n"
+
+#: getopt.c:333
+msgid "  -q, --quiet                  Disable error reporting by getopt(3)\n"
+msgstr ""
+"  -q, --quiet                  Desactivar información de errores mediante "
+"getopt(3)\n"
+
+#: getopt.c:334
+msgid "  -Q, --quiet-output           No normal output\n"
+msgstr "  -Q, --quiet-output           No hay salida normal\n"
+
+#: getopt.c:335
+msgid "  -s, --shell=shell            Set shell quoting conventions\n"
+msgstr "  -s, --shell=intérpr.comandos Definir convenciones de intérprete\n"
+
+#: getopt.c:336
+msgid "  -T, --test                   Test for getopt(1) version\n"
+msgstr "  -T, --test                   Probar para versión getopt(1)\n"
+
+#: getopt.c:337
+#, fuzzy
+msgid "  -u, --unqote                 Do not quote the output\n"
+msgstr "  -Q, --quiet-output           No hay salida normal\n"
+
+#: getopt.c:338
+msgid "  -V, --version                Output version information\n"
+msgstr "  -V, --version                Mostrar información de versión\n"
+
+#: getopt.c:350
+#, fuzzy
+msgid "options"
+msgstr "opciones útiles:"
+
+#: getopt.c:351
+#, fuzzy
+msgid "longoptions"
+msgstr "opciones peligrosas:"
+
+#: getopt.c:352
+#, fuzzy
+msgid "quiet"
+msgstr "Salir"
+
+#: getopt.c:353
+msgid "quiet-output"
+msgstr ""
+
+#: getopt.c:354
+#, fuzzy
+msgid "shell"
+msgstr "No hay ningún intérprete de comandos"
+
+#: getopt.c:355
+#, fuzzy
+msgid "test"
+msgstr "dest"
+
+#: getopt.c:356
+msgid "unquoted"
+msgstr ""
+
+#: getopt.c:357
+#, fuzzy
+msgid "help"
+msgstr "Ayuda"
+
+#: getopt.c:358
+#, fuzzy
+msgid "alternative"
+msgstr "Cilindros alternativos"
+
+#: getopt.c:359
+#, fuzzy
+msgid "name"
+msgstr "Nombre"
+
+#: getopt.c:360
+msgid "version"
+msgstr "versión"
+
+#: getopt.c:365
+msgid "+ao:l:n:qQs:TuhV"
+msgstr ""
+
+#: getopt.c:382
+msgid "GETOPT_COMPATIBLE"
+msgstr ""
+
+#: getopt.c:390
+msgid " --\n"
+msgstr ""
+
+#: getopt.c:394 getopt.c:455
+msgid "missing optstring argument"
+msgstr "Falta el argumento cadenaopciones"
+
+#: getopt.c:400
+msgid "-+"
+msgstr ""
+
+#: getopt.c:443
+#, fuzzy
+msgid "getopt (enhanced) 1.1.0\n"
+msgstr "getopt (mejorado) 1.0.3\n"
+
+#: getopt.c:449
+msgid "internal error, contact the author."
+msgstr "Error interno; contacte con el desarrollador."
+

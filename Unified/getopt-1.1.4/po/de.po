@@ -1,0 +1,250 @@
+# util-linux.po
+# German translation
+# Copyright (C) 1999
+# Elrond <Elrond@Wunder-Nett.org>, 1999.
+# $Revision: 1.1.1.1 $
+#
+# Permission is granted to freely copy and distribute
+# this file and modified versions, provided, that this
+# header is not removed and modified versions are marked
+# as such.
+#
+# People who helped or contributed (in historical order):
+#   Martin Schulze <joey@infodrom.north.de>
+#   Thomas Wagner <gertrans@yahoo.com>
+#   Beth Powell <bpowell@turbolinux.com>
+#
+#: getopt.c:203 getopt.c:211 getopt.c:375
+msgid ""
+msgstr ""
+"Project-Id-Version: getopt 1.1.0\n"
+"POT-Creation-Date: 2000-07-02 00:38+0200\n"
+"PO-Revision-Date: 2000-03-30 11:08+0100\n"
+"Last-Translator: Elrond <Elrond@Wunder-Nett.org>\n"
+"Language-Team: Elrond <Elrond@Wunder-Nett.org>\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=iso-8859-1\n"
+"Content-Transfer-Encoding: 8bit\n"
+
+#: getopt.c:89 getopt.c:99
+#, c-format
+msgid "%s: Out of memory!\n"
+msgstr "%s: Kein Speicher mehr frei!\n"
+
+#: getopt.c:89
+msgid "getopt"
+msgstr ""
+
+#: getopt.c:99
+msgid "geopt"
+msgstr ""
+
+#: getopt.c:200
+#, c-format
+msgid " --%s"
+msgstr ""
+
+#: getopt.c:202 getopt.c:205 getopt.c:210 getopt.c:218
+#, c-format
+msgid " %s"
+msgstr ""
+
+#: getopt.c:207
+#, c-format
+msgid " -%c"
+msgstr ""
+
+#: getopt.c:216
+msgid " --"
+msgstr ""
+
+#: getopt.c:219
+msgid "\n"
+msgstr ""
+
+#: getopt.c:232
+#, fuzzy, c-format
+msgid "getopt: %s\n"
+msgstr "Typ: %s\n"
+
+#: getopt.c:233
+msgid "Try `getopt --help' for more information.\n"
+msgstr "Mit 'getopt --help' zeigen Sie weitere Informationen an.\n"
+
+#: getopt.c:286 getopt.c:304
+msgid ", \t\n"
+msgstr ""
+
+#: getopt.c:299
+msgid "empty long option after -l or --long argument"
+msgstr "Leere long-Option nach dem Argument -l oder --long"
+
+#: getopt.c:310
+msgid "bash"
+msgstr ""
+
+#: getopt.c:312
+#, fuzzy
+msgid "tcsh"
+msgstr "nattach"
+
+#: getopt.c:314
+#, fuzzy
+msgid "sh"
+msgstr "n"
+
+#: getopt.c:316
+msgid "csh"
+msgstr ""
+
+#: getopt.c:319
+msgid "unknown shell after -s or --shell argument"
+msgstr "Unbekannte Shell als Argument von -s oder --shell"
+
+#: getopt.c:324
+msgid "Usage: getopt optstring parameters\n"
+msgstr "Verwendung: getopt Optionszeichenfolge Parameter\n"
+
+#: getopt.c:325
+msgid "       getopt [options] [--] optstring parameters\n"
+msgstr "       getopt [Optionen] [--] Optionszeichenfolge Parameter\n"
+
+#: getopt.c:326
+msgid "       getopt [options] -o|--options optstring [options] [--]\n"
+msgstr ""
+"       getopt [Optionen] -o|--options Optionszeichenfolge [Optionen] [--]\n"
+
+#: getopt.c:327
+msgid "              parameters\n"
+msgstr "              Parameter\n"
+
+#: getopt.c:328
+msgid ""
+"  -a, --alternative            Allow long options starting with single -\n"
+msgstr ""
+"  -a, --alternative            Lange Optionen mit einfachem - zulassen\n"
+
+#: getopt.c:329
+msgid "  -h, --help                   This small usage guide\n"
+msgstr "  -h, --help                   Diese Informationen anzeigen\n"
+
+#: getopt.c:330
+msgid "  -l, --longoptions=longopts   Long options to be recognized\n"
+msgstr "  -l, --longoptions=longopts   Lange Optionen werden erkannt\n"
+
+#: getopt.c:331
+msgid ""
+"  -n, --name=progname          The name under which errors are reported\n"
+msgstr ""
+"  -n, --name=progname          Der Name, unter dem Fehler ausgegeben werden\n"
+
+#: getopt.c:332
+msgid "  -o, --options=optstring      Short options to be recognized\n"
+msgstr "  -o, --options=optstring      Kurze Optionen werden erkannt\n"
+
+#: getopt.c:333
+msgid "  -q, --quiet                  Disable error reporting by getopt(3)\n"
+msgstr "  -q, --quiet                  Keine Fehleranzeige durch getopt(3)\n"
+
+#: getopt.c:334
+msgid "  -Q, --quiet-output           No normal output\n"
+msgstr "  -Q, --quiet-output           Keine normale Ausgabe\n"
+
+#: getopt.c:335
+msgid "  -s, --shell=shell            Set shell quoting conventions\n"
+msgstr "  -s, --shell=shell            Shell-Schreibweisen festlegen\n"
+
+#: getopt.c:336
+msgid "  -T, --test                   Test for getopt(1) version\n"
+msgstr "  -T, --test                   Version von getopt(1) prüfen\n"
+
+#: getopt.c:337
+#, fuzzy
+msgid "  -u, --unqote                 Do not quote the output\n"
+msgstr "  -Q, --quiet-output           Keine normale Ausgabe\n"
+
+#: getopt.c:338
+msgid "  -V, --version                Output version information\n"
+msgstr "  -V, --version                Versionsinformationen anzeigen\n"
+
+#: getopt.c:350
+#, fuzzy
+msgid "options"
+msgstr "Nützliche Optionen:"
+
+#: getopt.c:351
+#, fuzzy
+msgid "longoptions"
+msgstr "Gefährliche Optionen:"
+
+#: getopt.c:352
+#, fuzzy
+msgid "quiet"
+msgstr "Ende"
+
+#: getopt.c:353
+msgid "quiet-output"
+msgstr ""
+
+#: getopt.c:354
+#, fuzzy
+msgid "shell"
+msgstr "Keine Shell"
+
+#: getopt.c:355
+#, fuzzy
+msgid "test"
+msgstr "Ziel"
+
+#: getopt.c:356
+msgid "unquoted"
+msgstr ""
+
+#: getopt.c:357
+#, fuzzy
+msgid "help"
+msgstr "Hilfe"
+
+#: getopt.c:358
+#, fuzzy
+msgid "alternative"
+msgstr "Alternative Zylinder"
+
+#: getopt.c:359
+#, fuzzy
+msgid "name"
+msgstr "Name"
+
+#: getopt.c:360
+msgid "version"
+msgstr "Version"
+
+#: getopt.c:365
+msgid "+ao:l:n:qQs:TuhV"
+msgstr ""
+
+#: getopt.c:382
+msgid "GETOPT_COMPATIBLE"
+msgstr ""
+
+#: getopt.c:390
+msgid " --\n"
+msgstr ""
+
+#: getopt.c:394 getopt.c:455
+msgid "missing optstring argument"
+msgstr "Argument für 'optstring' fehlt"
+
+#: getopt.c:400
+msgid "-+"
+msgstr ""
+
+#: getopt.c:443
+#, fuzzy
+msgid "getopt (enhanced) 1.1.0\n"
+msgstr "getopt (enhanced) 1.0.3\n"
+
+#: getopt.c:449
+msgid "internal error, contact the author."
+msgstr "Interner Fehler, treten Sie mit dem Autor in Verbindung."
+

@@ -1,0 +1,239 @@
+# Japanese messages for util-linux 2.10
+#
+# Copyright (C) 1999 Free Software Foundation, Inc.
+# Daisuke Yamashita <yamad@mb.infoweb.ne.jp>, 1999.
+# includes cfdisk translation by
+#     Hidenobu NABETANI <nabetani@kern.phys.sci.osaka-u.ac.jp>
+#: getopt.c:203 getopt.c:211 getopt.c:375
+msgid ""
+msgstr ""
+"Project-Id-Version: getopt 1.1.0\n"
+"POT-Creation-Date: 2000-07-02 00:38+0200\n"
+"PO-Revision-Date: 1999-11-03 13:25+0900\n"
+"Last-Translator: Daisuke Yamashita <yamad@mb.infoweb.ne.jp>\n"
+"Language-Team: japanese <japo@flatout.org>\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=euc-jp\n"
+"Content-Transfer-Encoding: 8bit\n"
+
+#: getopt.c:89 getopt.c:99
+#, c-format
+msgid "%s: Out of memory!\n"
+msgstr "%s: メモリが足りません！\n"
+
+#: getopt.c:89
+msgid "getopt"
+msgstr ""
+
+#: getopt.c:99
+msgid "geopt"
+msgstr ""
+
+#: getopt.c:200
+#, c-format
+msgid " --%s"
+msgstr ""
+
+#: getopt.c:202 getopt.c:205 getopt.c:210 getopt.c:218
+#, c-format
+msgid " %s"
+msgstr ""
+
+#: getopt.c:207
+#, c-format
+msgid " -%c"
+msgstr ""
+
+#: getopt.c:216
+msgid " --"
+msgstr ""
+
+#: getopt.c:219
+msgid "\n"
+msgstr ""
+
+#: getopt.c:232
+#, fuzzy, c-format
+msgid "getopt: %s\n"
+msgstr "タイプ: %s\n"
+
+#: getopt.c:233
+msgid "Try `getopt --help' for more information.\n"
+msgstr "`getopt --help' で詳細情報を調べてください。\n"
+
+#: getopt.c:286 getopt.c:304
+msgid ", \t\n"
+msgstr ""
+
+#: getopt.c:299
+msgid "empty long option after -l or --long argument"
+msgstr "-l や --long 引数の後のロングオプションが空です"
+
+#: getopt.c:310
+msgid "bash"
+msgstr ""
+
+#: getopt.c:312
+#, fuzzy
+msgid "tcsh"
+msgstr "nattch"
+
+#: getopt.c:314
+#, fuzzy
+msgid "sh"
+msgstr " "
+
+#: getopt.c:316
+msgid "csh"
+msgstr ""
+
+#: getopt.c:319
+msgid "unknown shell after -s or --shell argument"
+msgstr "-s か --shell 引数の後のシェルを知りません"
+
+#: getopt.c:324
+msgid "Usage: getopt optstring parameters\n"
+msgstr "使い方: getopt オプション文字列 値\n"
+
+#: getopt.c:325
+msgid "       getopt [options] [--] optstring parameters\n"
+msgstr "       getopt [オプション] [--] オプション文字列 値\n"
+
+#: getopt.c:326
+msgid "       getopt [options] -o|--options optstring [options] [--]\n"
+msgstr ""
+"       getopt [オプション] -o|--options オプション文字列 [オプション] [--]\n"
+
+#: getopt.c:327
+msgid "              parameters\n"
+msgstr "              値\n"
+
+#: getopt.c:328
+msgid ""
+"  -a, --alternative            Allow long options starting with single -\n"
+msgstr ""
+"  -a, --alternative            ロングオプションが - 一つで始まるのを許す\n"
+
+#: getopt.c:329
+msgid "  -h, --help                   This small usage guide\n"
+msgstr "  -h, --help                   このちょっとした使い方を表示する\n"
+
+#: getopt.c:330
+msgid "  -l, --longoptions=longopts   Long options to be recognized\n"
+msgstr "  -l, --longoptions=longopts   ロングオプションを理解させる\n"
+
+#: getopt.c:331
+msgid ""
+"  -n, --name=progname          The name under which errors are reported\n"
+msgstr "  -n, --name=progname          エラー報告の際の名前\n"
+
+#: getopt.c:332
+msgid "  -o, --options=optstring      Short options to be recognized\n"
+msgstr "  -o, --options=optstring      ショーとオプションを理解させる\n"
+
+#: getopt.c:333
+msgid "  -q, --quiet                  Disable error reporting by getopt(3)\n"
+msgstr "  -q, --quiet                  getopt(3) のエラー報告を行わない\n"
+
+#: getopt.c:334
+msgid "  -Q, --quiet-output           No normal output\n"
+msgstr "  -Q, --quiet-output           通常の出力を行わない\n"
+
+#: getopt.c:335
+msgid "  -s, --shell=shell            Set shell quoting conventions\n"
+msgstr "  -s, --shell=shell            シェルの引用取り決めを設定する\n"
+
+#: getopt.c:336
+msgid "  -T, --test                   Test for getopt(1) version\n"
+msgstr "  -T, --test                   getopt(1) バージョンをテストする\n"
+
+#: getopt.c:337
+#, fuzzy
+msgid "  -u, --unqote                 Do not quote the output\n"
+msgstr "  -Q, --quiet-output           通常の出力を行わない\n"
+
+#: getopt.c:338
+msgid "  -V, --version                Output version information\n"
+msgstr "  -V, --version                バージョン情報を出力する\n"
+
+#: getopt.c:350
+#, fuzzy
+msgid "options"
+msgstr "有益なオプション:"
+
+#: getopt.c:351
+#, fuzzy
+msgid "longoptions"
+msgstr "危険なオプション:"
+
+#: getopt.c:352
+#, fuzzy
+msgid "quiet"
+msgstr "終了"
+
+#: getopt.c:353
+msgid "quiet-output"
+msgstr ""
+
+#: getopt.c:354
+#, fuzzy
+msgid "shell"
+msgstr "シェルがありません"
+
+#: getopt.c:355
+#, fuzzy
+msgid "test"
+msgstr "対象"
+
+#: getopt.c:356
+msgid "unquoted"
+msgstr ""
+
+#: getopt.c:357
+#, fuzzy
+msgid "help"
+msgstr "ヘルプ"
+
+#: getopt.c:358
+#, fuzzy
+msgid "alternative"
+msgstr "代替シリンダ数"
+
+#: getopt.c:359
+#, fuzzy
+msgid "name"
+msgstr "名前"
+
+#: getopt.c:360
+msgid "version"
+msgstr "バージョン"
+
+#: getopt.c:365
+msgid "+ao:l:n:qQs:TuhV"
+msgstr ""
+
+#: getopt.c:382
+msgid "GETOPT_COMPATIBLE"
+msgstr ""
+
+#: getopt.c:390
+msgid " --\n"
+msgstr ""
+
+#: getopt.c:394 getopt.c:455
+msgid "missing optstring argument"
+msgstr "オプション文字列引数が足りません"
+
+#: getopt.c:400
+msgid "-+"
+msgstr ""
+
+#: getopt.c:443
+#, fuzzy
+msgid "getopt (enhanced) 1.1.0\n"
+msgstr "getopt (enhanced) 1.0.3\n"
+
+#: getopt.c:449
+msgid "internal error, contact the author."
+msgstr "内部エラー、作者に連絡を。"
+
