@@ -7,7 +7,7 @@
 # It works around the bug by signing the bundle with a temporarily
 # "fattened" binary, then thin the binary again to produce the same
 # (hopefully) result as codesign'ing on Intel machines (where the
-Â# bug is not present).
+# bug is not present).
 # Install this script as /usr/bin/codesign ONLY ON POWERPC MACHINES.
 
 # Check whether we want to sign things.
