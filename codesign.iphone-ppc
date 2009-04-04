@@ -1,0 +1,54 @@
+#!/bin/bash
+
+# This script replaces codesign (which must be still available as
+# /usr/bin/codesign.apple) to allow iPhone applications to be signed
+# on PowerPC machines by working around a bug in libsecurity_codesign
+# (rdar://6471895).
+# It works around the bug by signing the bundle with a temporarily
+# "fattened" binary, then thin the binary again to produce the same
+# (hopefully) result as codesign'ing on Intel machines (where the
+Â# bug is not present).
+# Install this script as /usr/bin/codesign ONLY ON POWERPC MACHINES.
+
+# Check whether we want to sign things.
+
+HERE="`dirname "$0"`"
+DEVELOPER_DIR="`xcode-select -print-path`"/Platforms/iPhoneOS.platform/Developer/usr/bin
+TEMP_ROOT=/tmp
+
+SHOULD_SIGN=NO
+for i in "$@"; do
+	if [ "$i" == "-s" ]; then
+		SHOULD_SIGN=YES
+	fi
+done
+
+WRAPPER_PATH="${!#}" # The last parameter
+
+EXECUTABLE_NAME="`basename "$WRAPPER_PATH" .app`" # assumes equal to bundle name.
+EXECUTABLE_PATH="$WRAPPER_PATH"/"$EXECUTABLE_NAME"
+
+if [ "$SHOULD_SIGN" == YES -a -x "$EXECUTABLE_PATH" ]; then
+	lipo -info "$EXECUTABLE_PATH"|grep -q "armv6"
+	ZERO_IF_ARM=$?
+	
+	if [ "$ZERO_IF_ARM" == 0 ]; then
+		echo "note: compensating for thin (armv6) binaries signing bug on PPC." >&2
+		TMPDIR="$TEMP_ROOT"/codesign-armv6-compensation.$$
+		mkdir -p "$TMPDIR"
+
+		"$DEVELOPER_DIR"/lipo -create "$EXECUTABLE_PATH" -output "$TMPDIR"/"$EXECUTABLE_NAME"
+		mv "$TMPDIR"/"$EXECUTABLE_NAME" "$EXECUTABLE_PATH"
+		
+		"$HERE"/codesign.apple "$@" || exit $?
+		
+		"$DEVELOPER_DIR"/lipo -thin armv6 "$EXECUTABLE_PATH" -output "$TMPDIR"/"$EXECUTABLE_NAME"
+		mv "$TMPDIR"/"$EXECUTABLE_NAME" "$EXECUTABLE_PATH"
+		rmdir "$TMPDIR" || exit 1
+		exit 0
+	fi
+fi
+
+# Otherwise, let codesign do everything for us.
+"$HERE"/codesign.apple "$@"
+
