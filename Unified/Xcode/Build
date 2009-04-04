@@ -8,6 +8,12 @@
 TARGET="`basename "$INFINITELABS_UNIFIED_PROJECT_DIR"/*.xcodeproj .xcodeproj`"
 
 for STYLE in "${STYLES[@]}"; do
+	if [ "$FAST" == YES -o ("$FAST_IF_USUAL_FOR_STYLE" == YES -a "$STYLE" == Debug )]; then
+		ACTIONS=( build )
+	else
+		ACTIONS=( clean build )
+	fi
+	
 	(cd "$INFINITELABS_UNIFIED_PROJECT_DIR" && \
 		xcodebuild -target "$TARGET" -configuration "$STYLE" "${ACTIONS[@]}" "${BUILD_SETTINGS[@]}" \
 	) || exit 1

@@ -15,6 +15,12 @@ for STYLE in "${STYLES[@]}"; do
 			
 			# Device, Debug
 
+			if [ "$FAST" == YES -o "$FAST_IF_USUAL_FOR_STYLE" == YES ]; then
+				ACTIONS=( build )
+			else
+				ACTIONS=( clean build )
+			fi
+			
 			DEBUG_BUILD_SETTINGS=( "${BUILD_SETTINGS[@]}" )
 
 			if [ "$DEVELOPMENT_IDENTITY" != "" ]; then
@@ -42,6 +48,12 @@ for STYLE in "${STYLES[@]}"; do
 		"Ad Hoc")
 
 			# Device, Ad Hoc
+
+			if [ "$FAST" == YES ]; then
+				ACTIONS=( build )
+			else
+				ACTIONS=( clean build )
+			fi
 
 			AD_HOC_BUILD_SETTINGS=( "${BUILD_SETTINGS[@]}" )
 
@@ -71,6 +83,12 @@ for STYLE in "${STYLES[@]}"; do
 		"App Store")
 			
 			# Device, App Store
+
+			if [ "$FAST" == YES ]; then
+				ACTIONS=( build )
+			else
+				ACTIONS=( clean build )
+			fi
 
 			APP_STORE_BUILD_SETTINGS=( "${BUILD_SETTINGS[@]}" )
 

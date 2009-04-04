@@ -8,6 +8,10 @@ BUILD_SETTINGS=( INFINITELABS_TOOLS="$INFINITELABS_UNIFIED_DIR"/.. )
 while [ "$1" != "" ]; do
 	case "$1" in
 		--fast|-f)
+			FAST_IF_USUAL_FOR_STYLE=YES
+			;;
+		
+		--very-fast|-F)
 			FAST=YES
 			;;
 		
@@ -77,12 +81,6 @@ while [ "$1" != "" ]; do
 	esac
 	shift
 done
-
-if [ "$FAST" == "YES" ]; then
-	ACTIONS=( build )
-else
-	ACTIONS=( clean build )
-fi
 
 if [ "${#STYLES[@]}" == "0" ]; then
 	STYLES=( "${ALL_STYLES[@]}" )
