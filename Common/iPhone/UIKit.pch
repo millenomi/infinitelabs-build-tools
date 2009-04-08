@@ -29,4 +29,6 @@ static inline CGRect L0UIKeyboardGetFrameForKey(NSNotification* keyboardNotifica
 	return frame;
 }
 
+#define UIApp ([UIApplication sharedApplication])
+
 #endif
