@@ -7,6 +7,5 @@ ILUnifiedLog "Will load local settings at: $LOCAL_OPTIONS_FILE"
 if [ -f "$LOCAL_OPTIONS_FILE" ]; then
 	. "$LOCAL_OPTIONS_FILE"
 else
-	echo "error: No local settings have been found. To use local settings, create a Bash script at $LOCAL_OPTIONS_FILE which sets the desired option values." >&2
-	exit 1
+	echo "note: No local options found for this style. Create a file at $LOCAL_OPTIONS_FILE to add local options for this style." >&2
 fi
