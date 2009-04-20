@@ -4,14 +4,32 @@
 
 #ifdef __OBJC__
 
-#ifdef DEBUG
-	#define L0Log(x, ...) NSLog(@"<DEBUG: %s>: " x, __func__, ## __VA_ARGS__)
-	#define L0LogIf(cond, x, ...) do { if (cond) L0Log(x, ## __VA_ARGS__); } while (0)
-	#define L0Show(x) L0Log(@"%@", [(x) description])
+// This header sets up L0Log() the same way POSIX/Common.h sets up L0Printf.
+// See that header for details.
+
+#import <Foundation/Foundation.h>
+
+// This macro should not be referenced outside this .h.
+// Use L0Log, L0LogDebug or L0LogAlways instead.
+#define L0Log_PerformInline(x, ...) \
+	NSLog(@"<DEBUG: %s>" x, __func__, ## __VA_ARGS__);
+
+#define L0LogDebug(x, ...) L0InsertIfDebug(L0Log_PerformInline(x, ## __VA_ARGS__))
+#define L0LogAlways(x, ...) L0Log_PerformInline(x, ## __VA_ARGS__)
+
+#if !L0LogUseOnRequestLogging
+#define L0Log(x, ...) L0LogDebug(x, ## __VA_ARGS__)
+
+// L0LogShouldShowOnRequestLoggingObjC in libLogging* can access defaults,
+// not just the environment. Use it if you want to control L0Log rather than L0Printf.
+#if DEBUG
+#define L0LogShouldShowOnRequestLogging() YES
 #else
-	#define L0Log(...)
-	#define L0LogIf(...)
-	#define L0Show(...)
-#endif // def DEBUG
+#define L0LogShouldShowOnRequestLogging() NO
+#endif
+
+#endif // !L0LogUseOnRequestLogging
+
+#define L0LogDebugIf(cond, x, ...) L0InsertIfDebug(if (cond) L0Log_PerformInline(x, ## __VA_ARGS__))
 
 #endif // def __OBJC__

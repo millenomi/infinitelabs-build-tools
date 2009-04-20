@@ -1,2 +1,7 @@
 .DS_Store
 Legacy
+Logging/build
+Logging/Build
+Logging/TemporaryItems
+Logging/*.xcodeproj/*.mode2v3
+Logging/*.xcodeproj/*.pbxuser
