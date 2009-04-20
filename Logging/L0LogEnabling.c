@@ -14,7 +14,8 @@
 int L0PrintfShouldShowOnRequestLogging() {
 	static int checked = 0, enabled;
 	if (!checked) {
-		enabled = (strcmp(getenv(kL0LogShowOnRequestEnvironmentVariable), "YES") == 0);
+		char* envValue = getenv(kL0LogShowOnRequestEnvironmentVariable);
+		enabled = envValue != NULL && (strcmp(envValue, "YES") == 0);
 		checked = 1;
 	}
 	
