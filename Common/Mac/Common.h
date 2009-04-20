@@ -18,6 +18,7 @@
 #define L0LogAlways(x, ...) L0Log_PerformInline(x, ## __VA_ARGS__)
 
 #if !L0LogUseOnRequestLogging
+// #warning Defining L0Log as L0LogDebug -- use libLogging.a instead if you want real on-request logging.
 #define L0Log(x, ...) L0LogDebug(x, ## __VA_ARGS__)
 
 // L0LogShouldShowOnRequestLoggingObjC in libLogging* can access defaults,
@@ -28,6 +29,11 @@
 #define L0LogShouldShowOnRequestLogging() NO
 #endif
 
+#else
+// This is a hack to build the logging library
+#if !L0LogIsBuilding
+#include <L0Log/L0Log.h>
+#endif
 #endif // !L0LogUseOnRequestLogging
 
 #define L0LogDebugIf(cond, x, ...) L0InsertIfDebug(if (cond) L0Log_PerformInline(x, ## __VA_ARGS__))

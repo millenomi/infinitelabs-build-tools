@@ -55,6 +55,7 @@
 // If you define this and don't link to libLogging*, you'll get missing
 // symbol errors on link.
 #if !L0LogUseOnRequestLogging
+// #warning Defining L0Printf as L0PrintfDebug -- use libLogging.a instead if you want real on-request logging.
 #define L0Printf(x, ...) L0PrintfDebug(x, ## __VA_ARGS__)
 
 // The following emulate equivalent calls in libLogging*, for when it's not used.
@@ -89,4 +90,8 @@
 #define L0AttributeLikePrintf(m, n) __attribute__((format(printf,m,n)))
 #else
 #define L0AttributeLikePrintf(...)
+#endif
+
+#if L0LogUseOnRequestLogging && !L0LogIsBuilding
+#include <L0Log/L0Printf.h>
 #endif

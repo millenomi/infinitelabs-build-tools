@@ -13,9 +13,35 @@
 		15B7BD970F9C618300EF9AB9 /* L0Printf.c in Sources */ = {isa = PBXBuildFile; fileRef = 15B7BD950F9C618300EF9AB9 /* L0Printf.c */; };
 		15B7BE290F9C6DA500EF9AB9 /* L0Log.h in Headers */ = {isa = PBXBuildFile; fileRef = 15B7BE270F9C6DA500EF9AB9 /* L0Log.h */; };
 		15B7BE2A0F9C6DA500EF9AB9 /* L0Log.m in Sources */ = {isa = PBXBuildFile; fileRef = 15B7BE280F9C6DA500EF9AB9 /* L0Log.m */; };
+		15B7BEF20F9C748E00EF9AB9 /* L0LogEnabling.h in Headers */ = {isa = PBXBuildFile; fileRef = 15B7BD8C0F9C606500EF9AB9 /* L0LogEnabling.h */; };
+		15B7BEF30F9C748E00EF9AB9 /* L0Printf.h in Headers */ = {isa = PBXBuildFile; fileRef = 15B7BD940F9C618300EF9AB9 /* L0Printf.h */; };
+		15B7BEF40F9C748E00EF9AB9 /* L0Log.h in Headers */ = {isa = PBXBuildFile; fileRef = 15B7BE270F9C6DA500EF9AB9 /* L0Log.h */; };
+		15B7BEF50F9C749800EF9AB9 /* L0LogEnabling.c in Sources */ = {isa = PBXBuildFile; fileRef = 15B7BD8D0F9C606500EF9AB9 /* L0LogEnabling.c */; };
+		15B7BEF60F9C749800EF9AB9 /* L0Printf.c in Sources */ = {isa = PBXBuildFile; fileRef = 15B7BD950F9C618300EF9AB9 /* L0Printf.c */; };
+		15B7BEF70F9C749800EF9AB9 /* L0Log.m in Sources */ = {isa = PBXBuildFile; fileRef = 15B7BE280F9C6DA500EF9AB9 /* L0Log.m */; };
+		15B7BEF90F9C74B600EF9AB9 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 15B7BEF80F9C74B600EF9AB9 /* Foundation.framework */; };
+		15B7BF1D0F9C75CC00EF9AB9 /* L0LogEnabling.h in Copy Headers To Products Directory */ = {isa = PBXBuildFile; fileRef = 15B7BD8C0F9C606500EF9AB9 /* L0LogEnabling.h */; };
+		15B7BF1E0F9C75CC00EF9AB9 /* L0Printf.h in Copy Headers To Products Directory */ = {isa = PBXBuildFile; fileRef = 15B7BD940F9C618300EF9AB9 /* L0Printf.h */; };
+		15B7BF1F0F9C75CC00EF9AB9 /* L0Log.h in Copy Headers To Products Directory */ = {isa = PBXBuildFile; fileRef = 15B7BE270F9C6DA500EF9AB9 /* L0Log.h */; };
 		8DC2EF530486A6940098B216 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 089C1666FE841158C02AAC07 /* InfoPlist.strings */; };
 		8DC2EF570486A6940098B216 /* Cocoa.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1058C7B1FEA5585E11CA2CBB /* Cocoa.framework */; };
 /* End PBXBuildFile section */
+
+/* Begin PBXCopyFilesBuildPhase section */
+		15B7BF190F9C75AA00EF9AB9 /* Copy Headers To Products Directory */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = "$(SYMROOT)/Headers/L0Log";
+			dstSubfolderSpec = 0;
+			files = (
+				15B7BF1D0F9C75CC00EF9AB9 /* L0LogEnabling.h in Copy Headers To Products Directory */,
+				15B7BF1E0F9C75CC00EF9AB9 /* L0Printf.h in Copy Headers To Products Directory */,
+				15B7BF1F0F9C75CC00EF9AB9 /* L0Log.h in Copy Headers To Products Directory */,
+			);
+			name = "Copy Headers To Products Directory";
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
 		0867D69BFE84028FC02AAC07 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = /System/Library/Frameworks/Foundation.framework; sourceTree = "<absolute>"; };
@@ -28,6 +54,8 @@
 		15B7BD950F9C618300EF9AB9 /* L0Printf.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = L0Printf.c; sourceTree = "<group>"; };
 		15B7BE270F9C6DA500EF9AB9 /* L0Log.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = L0Log.h; sourceTree = "<group>"; };
 		15B7BE280F9C6DA500EF9AB9 /* L0Log.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = L0Log.m; sourceTree = "<group>"; };
+		15B7BEE50F9C744100EF9AB9 /* libLogging-iPhone.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libLogging-iPhone.a"; sourceTree = BUILT_PRODUCTS_DIR; };
+		15B7BEF80F9C74B600EF9AB9 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
 		32DBCF5E0370ADEE00C91783 /* Logging_Prefix.pch */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Logging_Prefix.pch; sourceTree = "<group>"; };
 		8DC2EF5A0486A6940098B216 /* Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		8DC2EF5B0486A6940098B216 /* Logging.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Logging.framework; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -35,6 +63,14 @@
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
+		15B7BEE30F9C744100EF9AB9 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				15B7BEF90F9C74B600EF9AB9 /* Foundation.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		8DC2EF560486A6940098B216 /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
@@ -50,6 +86,7 @@
 			isa = PBXGroup;
 			children = (
 				8DC2EF5B0486A6940098B216 /* Logging.framework */,
+				15B7BEE50F9C744100EF9AB9 /* libLogging-iPhone.a */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -62,6 +99,7 @@
 				089C1665FE841158C02AAC07 /* Resources */,
 				0867D69AFE84028FC02AAC07 /* External Frameworks and Libraries */,
 				034768DFFF38A50411DB9C8B /* Products */,
+				15B7BEF80F9C74B600EF9AB9 /* Foundation.framework */,
 			);
 			name = Logging;
 			sourceTree = "<group>";
@@ -126,6 +164,16 @@
 /* End PBXGroup section */
 
 /* Begin PBXHeadersBuildPhase section */
+		15B7BEE10F9C744100EF9AB9 /* Headers */ = {
+			isa = PBXHeadersBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				15B7BEF20F9C748E00EF9AB9 /* L0LogEnabling.h in Headers */,
+				15B7BEF30F9C748E00EF9AB9 /* L0Printf.h in Headers */,
+				15B7BEF40F9C748E00EF9AB9 /* L0Log.h in Headers */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		8DC2EF500486A6940098B216 /* Headers */ = {
 			isa = PBXHeadersBuildPhase;
 			buildActionMask = 2147483647;
@@ -139,6 +187,24 @@
 /* End PBXHeadersBuildPhase section */
 
 /* Begin PBXNativeTarget section */
+		15B7BEE40F9C744100EF9AB9 /* Logging (iPhone) */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 15B7BEEF0F9C746000EF9AB9 /* Build configuration list for PBXNativeTarget "Logging (iPhone)" */;
+			buildPhases = (
+				15B7BEE10F9C744100EF9AB9 /* Headers */,
+				15B7BEE20F9C744100EF9AB9 /* Sources */,
+				15B7BEE30F9C744100EF9AB9 /* Frameworks */,
+				15B7BF190F9C75AA00EF9AB9 /* Copy Headers To Products Directory */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = "Logging (iPhone)";
+			productName = "Logging-iPhone";
+			productReference = 15B7BEE50F9C744100EF9AB9 /* libLogging-iPhone.a */;
+			productType = "com.apple.product-type.library.static";
+		};
 		8DC2EF4F0486A6940098B216 /* Logging */ = {
 			isa = PBXNativeTarget;
 			buildConfigurationList = 1DEB91AD08733DA50010E9CD /* Build configuration list for PBXNativeTarget "Logging" */;
@@ -172,6 +238,7 @@
 			projectRoot = "";
 			targets = (
 				8DC2EF4F0486A6940098B216 /* Logging */,
+				15B7BEE40F9C744100EF9AB9 /* Logging (iPhone) */,
 			);
 		};
 /* End PBXProject section */
@@ -188,6 +255,16 @@
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
+		15B7BEE20F9C744100EF9AB9 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				15B7BEF50F9C749800EF9AB9 /* L0LogEnabling.c in Sources */,
+				15B7BEF60F9C749800EF9AB9 /* L0Printf.c in Sources */,
+				15B7BEF70F9C749800EF9AB9 /* L0Log.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		8DC2EF540486A6940098B216 /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
@@ -212,6 +289,43 @@
 /* End PBXVariantGroup section */
 
 /* Begin XCBuildConfiguration section */
+		15B7BEE60F9C744200EF9AB9 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				COPY_PHASE_STRIP = NO;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREFIX_HEADER = "$(INFINITELABS_TOOLS)/Common/iPhone/Foundation.pch";
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"L0LogIsBuilding=1",
+					"L0LogUseOnRequestLogging=1",
+				);
+				PREBINDING = NO;
+				PRODUCT_NAME = "Logging-iPhone";
+				SDKROOT = iphoneos2.2;
+			};
+			name = Debug;
+		};
+		15B7BEE70F9C744200EF9AB9 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				COPY_PHASE_STRIP = YES;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				GCC_ENABLE_FIX_AND_CONTINUE = NO;
+				GCC_PREFIX_HEADER = "$(INFINITELABS_TOOLS)/Common/iPhone/Foundation.pch";
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"L0LogIsBuilding=1",
+					"L0LogUseOnRequestLogging=1",
+				);
+				PREBINDING = NO;
+				PRODUCT_NAME = "Logging-iPhone";
+				SDKROOT = iphoneos2.2;
+				ZERO_LINK = NO;
+			};
+			name = Release;
+		};
 		1DEB91AE08733DA50010E9CD /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
@@ -264,6 +378,7 @@
 				ONLY_ACTIVE_ARCH = YES;
 				PREBINDING = NO;
 				SDKROOT = macosx10.5;
+				SYMROOT = Build;
 			};
 			name = Debug;
 		};
@@ -276,12 +391,22 @@
 				GCC_WARN_UNUSED_VARIABLE = YES;
 				PREBINDING = NO;
 				SDKROOT = macosx10.5;
+				SYMROOT = Build;
 			};
 			name = Release;
 		};
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
+		15B7BEEF0F9C746000EF9AB9 /* Build configuration list for PBXNativeTarget "Logging (iPhone)" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				15B7BEE60F9C744200EF9AB9 /* Debug */,
+				15B7BEE70F9C744200EF9AB9 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
 		1DEB91AD08733DA50010E9CD /* Build configuration list for PBXNativeTarget "Logging" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
