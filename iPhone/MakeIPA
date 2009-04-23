@@ -1,0 +1,25 @@
+#!/bin/bash
+
+APP_BUNDLE="$1"
+IPA_FILE="$2"
+
+if [ "$APP_BUNDLE" == "" -o "$IPA_FILE" == "" ]; then
+	echo "usage: $0 <.app bundle> <.ipa file>" >&2
+	exit 1
+fi
+
+if [ ! -d "$APP_BUNDLE" ]; then
+	echo "error: $APP_BUNDLE is not a directory." >&2
+	exit 1
+fi
+
+IPA_DIR="`dirname "$IPA_FILE"`"
+IPA_CONTENT="$IPA_DIR"/"$IPA_FILE.contents"
+
+mkdir -p "$IPA_CONTENT" || exit 1
+
+mkdir "$IPA_CONTENT"/Payload
+cp -Rv "$APP_BUNDLE" "$IPA_CONTENT"/Payload/
+
+ditto -ck --rsrc --sequesterRsrc "$IPA_CONTENT" "$IPA_FILE".zip
+mv "$IPA_FILE".zip "$IPA_FILE"
