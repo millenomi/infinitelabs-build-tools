@@ -12,7 +12,7 @@
 // This macro should not be referenced outside this .h.
 // Use L0Log, L0LogDebug or L0LogAlways instead.
 #define L0Log_PerformInline(x, ...) \
-	NSLog(@"<DEBUG: %s>" x, __func__, ## __VA_ARGS__);
+	NSLog(@"<DEBUG: %s> " x, __func__, ## __VA_ARGS__);
 
 #define L0LogDebug(x, ...) L0InsertIfDebug(L0Log_PerformInline(x, ## __VA_ARGS__))
 #define L0LogAlways(x, ...) L0Log_PerformInline(x, ## __VA_ARGS__)

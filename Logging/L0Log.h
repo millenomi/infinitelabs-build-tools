@@ -20,5 +20,5 @@ L0QualifyCallAsC
 void L0ImplementationOfLogOnRequest(NSString* format, ...);
 
 #if L0LogUseOnRequestLogging
-#define L0Log(format, ...) L0ImplementationOfLogOnRequest("<DEBUG: %s>" format, __func__, ## __VA_ARGS__)
+#define L0Log(format, ...) L0ImplementationOfLogOnRequest(@"<DEBUG: %s> " format, __func__, ## __VA_ARGS__)
 #endif

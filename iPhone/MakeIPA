@@ -1,5 +1,7 @@
 #!/bin/bash
 
+set -avx
+
 APP_BUNDLE="$1"
 IPA_FILE="$2"
 
