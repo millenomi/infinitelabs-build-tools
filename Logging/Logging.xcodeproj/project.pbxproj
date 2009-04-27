@@ -56,9 +56,12 @@
 		15B7BE280F9C6DA500EF9AB9 /* L0Log.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = L0Log.m; sourceTree = "<group>"; };
 		15B7BEE50F9C744100EF9AB9 /* libLogging-iPhone.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libLogging-iPhone.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		15B7BEF80F9C74B600EF9AB9 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
+		15E592D10FA64B4B004D9495 /* Logging-iPhone.xcconfig */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xcconfig; path = "Logging-iPhone.xcconfig"; sourceTree = "<group>"; };
+		15E592D50FA64B93004D9495 /* Logging-Common.xcconfig */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xcconfig; path = "Logging-Common.xcconfig"; sourceTree = "<group>"; };
+		15E592D70FA64BCD004D9495 /* Logging.xcconfig */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xcconfig; path = Logging.xcconfig; sourceTree = "<group>"; };
 		32DBCF5E0370ADEE00C91783 /* Logging_Prefix.pch */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Logging_Prefix.pch; sourceTree = "<group>"; };
 		8DC2EF5A0486A6940098B216 /* Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		8DC2EF5B0486A6940098B216 /* Logging.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Logging.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		8DC2EF5B0486A6940098B216 /* Logging */ = {isa = PBXFileReference; includeInIndex = 0; lastKnownFileType = wrapper.framework; path = Logging; sourceTree = BUILT_PRODUCTS_DIR; };
 		D2F7E79907B2D74100F64583 /* CoreData.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreData.framework; path = /System/Library/Frameworks/CoreData.framework; sourceTree = "<absolute>"; };
 /* End PBXFileReference section */
 
@@ -85,7 +88,7 @@
 		034768DFFF38A50411DB9C8B /* Products */ = {
 			isa = PBXGroup;
 			children = (
-				8DC2EF5B0486A6940098B216 /* Logging.framework */,
+				8DC2EF5B0486A6940098B216 /* Logging */,
 				15B7BEE50F9C744100EF9AB9 /* libLogging-iPhone.a */,
 			);
 			name = Products;
@@ -94,6 +97,7 @@
 		0867D691FE84028FC02AAC07 /* Logging */ = {
 			isa = PBXGroup;
 			children = (
+				15E592CB0FA64B28004D9495 /* Configuration Files */,
 				08FB77AEFE84172EC02AAC07 /* Classes */,
 				32C88DFF0371C24200C91783 /* Other Sources */,
 				089C1665FE841158C02AAC07 /* Resources */,
@@ -151,6 +155,16 @@
 				0867D69BFE84028FC02AAC07 /* Foundation.framework */,
 			);
 			name = "Other Frameworks";
+			sourceTree = "<group>";
+		};
+		15E592CB0FA64B28004D9495 /* Configuration Files */ = {
+			isa = PBXGroup;
+			children = (
+				15E592D10FA64B4B004D9495 /* Logging-iPhone.xcconfig */,
+				15E592D70FA64BCD004D9495 /* Logging.xcconfig */,
+				15E592D50FA64B93004D9495 /* Logging-Common.xcconfig */,
+			);
+			name = "Configuration Files";
 			sourceTree = "<group>";
 		};
 		32C88DFF0371C24200C91783 /* Other Sources */ = {
@@ -221,7 +235,7 @@
 			name = Logging;
 			productInstallPath = "$(HOME)/Library/Frameworks";
 			productName = Logging;
-			productReference = 8DC2EF5B0486A6940098B216 /* Logging.framework */;
+			productReference = 8DC2EF5B0486A6940098B216 /* Logging */;
 			productType = "com.apple.product-type.framework";
 		};
 /* End PBXNativeTarget section */
@@ -291,16 +305,12 @@
 /* Begin XCBuildConfiguration section */
 		15B7BEE60F9C744200EF9AB9 /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 15E592D10FA64B4B004D9495 /* Logging-iPhone.xcconfig */;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
 				COPY_PHASE_STRIP = NO;
 				GCC_DYNAMIC_NO_PIC = NO;
 				GCC_OPTIMIZATION_LEVEL = 0;
-				GCC_PREFIX_HEADER = "$(INFINITELABS_TOOLS)/Common/iPhone/Foundation.pch";
-				GCC_PREPROCESSOR_DEFINITIONS = (
-					"L0LogIsBuilding=1",
-					"L0LogUseOnRequestLogging=1",
-				);
 				PREBINDING = NO;
 				PRODUCT_NAME = "Logging-iPhone";
 				SDKROOT = iphoneos2.2;
@@ -309,16 +319,12 @@
 		};
 		15B7BEE70F9C744200EF9AB9 /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 15E592D10FA64B4B004D9495 /* Logging-iPhone.xcconfig */;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
 				COPY_PHASE_STRIP = YES;
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
 				GCC_ENABLE_FIX_AND_CONTINUE = NO;
-				GCC_PREFIX_HEADER = "$(INFINITELABS_TOOLS)/Common/iPhone/Foundation.pch";
-				GCC_PREPROCESSOR_DEFINITIONS = (
-					"L0LogIsBuilding=1",
-					"L0LogUseOnRequestLogging=1",
-				);
 				PREBINDING = NO;
 				PRODUCT_NAME = "Logging-iPhone";
 				SDKROOT = iphoneos2.2;
@@ -328,6 +334,7 @@
 		};
 		1DEB91AE08733DA50010E9CD /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 15E592D70FA64BCD004D9495 /* Logging.xcconfig */;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
 				COPY_PHASE_STRIP = NO;
@@ -339,8 +346,6 @@
 				GCC_MODEL_TUNING = G5;
 				GCC_OPTIMIZATION_LEVEL = 0;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
-				GCC_PREFIX_HEADER = "$(INFINITELABS_TOOLS)/Common/Mac/Foundation.pch";
-				GCC_PREPROCESSOR_DEFINITIONS = "L0LogUseOnRequestLogging=1";
 				INFOPLIST_FILE = Info.plist;
 				INSTALL_PATH = "$(HOME)/Library/Frameworks";
 				PRODUCT_NAME = Logging;
@@ -350,6 +355,7 @@
 		};
 		1DEB91AF08733DA50010E9CD /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 15E592D70FA64BCD004D9495 /* Logging.xcconfig */;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
@@ -358,8 +364,6 @@
 				FRAMEWORK_VERSION = A;
 				GCC_MODEL_TUNING = G5;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
-				GCC_PREFIX_HEADER = "$(INFINITELABS_TOOLS)/Common/Mac/Foundation.pch";
-				GCC_PREPROCESSOR_DEFINITIONS = "L0LogUseOnRequestLogging=1";
 				INFOPLIST_FILE = Info.plist;
 				INSTALL_PATH = "$(HOME)/Library/Frameworks";
 				PRODUCT_NAME = Logging;
