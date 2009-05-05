@@ -1,0 +1,13 @@
+#!/usr/bin/env macruby
+
+framework 'Cocoa'
+ARGV.each do |f|
+  f = File.expand_path f
+  d = NSDictionary.dictionaryWithContentsOfFile(f)
+  if not d
+    $stderr.puts "#{f} is not a dictionary or strings file!"
+    next
+  end
+  
+  d.descriptionInStringsFileFormat.dataUsingEncoding(NSUTF8StringEncoding).writeToFile(f, atomically:true)
+end

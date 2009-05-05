@@ -1,0 +1,17 @@
+#!/usr/bin/env ruby
+
+require 'osx/cocoa'
+
+ARGV.each do |a|
+  a = File.expand_path(a)
+  d = OSX::NSDictionary.dictionaryWithContentsOfFile a
+  if not d
+    $stderr.puts "Could not deplistify #{a}."
+    next
+  end
+  
+  s = d.descriptionInStringsFileFormat.to_s
+  File.open(a, "w") do |io|
+    io << s
+  end
+end

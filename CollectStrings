@@ -14,9 +14,13 @@ BASE_LOCALE_DIR =
   (NEXT_NAMED_DIR if File.directory? NEXT_NAMED_DIR) ||
   (ISO_NAMED_DIR if File.directory? ISO_NAMED_DIR)
   
+if not BASE_LOCALE_DIR
+  $stderr.puts "error: No base locale directory found to take original data from. Set one via the BASE_LOCALE_DIR environment variabile or make sure en.lproj or English.lproj exist."
+end
+  
 TARGET = ENV['TARGET']
 if not TARGET
-  $stderr << "error: No target directory found to save the collected strings in. Set one via the TARGET environment variable.\n"
+  $stderr.puts "error: No target directory found to save the collected strings in. Set one via the TARGET environment variable."
   exit 1
 end
 
@@ -32,6 +36,12 @@ filesToRunGenstringsOn = []
 TARGET_FULL = File.expand_path(TARGET)
 
 # argv = ARGV.empty? ? %w{.} : ARGV
+if ENV['ILABS_L0ShowOnRequestLogging'] == 'YES'
+  $stderr.puts "debug: SRCROOT is #{SRCROOT}"
+  $stderr.puts "debug: SRCROOT is #{BASE_LOCALE_DIR}"
+  $stderr.puts "debug: TARGET is #{TARGET}"
+end
+
 Find.find(SRCROOT) do |file|
   next if File.expand_path(file)[0, TARGET_FULL.length] == TARGET_FULL
   
