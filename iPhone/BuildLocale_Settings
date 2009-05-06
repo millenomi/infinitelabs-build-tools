@@ -52,12 +52,6 @@ locales.each do |locale|
   compiledLocaleDir = File.join(compiledDir, locale + '.lproj')
   Dir.mkdir(compiledLocaleDir) unless File.directory? compiledLocaleDir
   compiledLocaleDirs[locale] = compiledLocaleDir
-  
-  if PRODUCE_APPLIED
-    appliedDir = File.join(APPLIED_DIR, locale)
-    Dir.mkdir(appliedDir) unless File.directory? appliedDir
-    appliedDirs[locale] = appliedDir
-  end
 end
 
 # The meat of the thing -- iterate the source files and for
@@ -73,7 +67,7 @@ Dir.open(dirPath).each do |file|
     
       # Copy the localized file from the localeDir to the compiledLocaleDir
       compiledLocaleDirs.each do |locale, compiledLocaleDir|
-        compiledStringsFile = File.join(compiledLocaleDir, 'Settings.' + file)
+        compiledStringsFile = File.join(compiledLocaleDir, file)
       
         if File.exist? compiledStringsFile and File.stat(compiledStringsFile).mtime < File.stat(fullFilePath).mtime
           $stderr.puts "note: Removing file #{compiledStringsFile} because the source file #{fullFilePath} is updated."
@@ -82,7 +76,7 @@ Dir.open(dirPath).each do |file|
       
         unless File.exist? compiledStringsFile
           $stderr.puts "note: #{compiledStringsFile} does not exist, regenerating."
-          FileUtils.cp File.join(localesDir, locale, file),
+          FileUtils.cp File.join(localesDir, locale, 'Settings.' + file),
             compiledStringsFile
         end
       end
