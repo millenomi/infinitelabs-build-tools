@@ -2,6 +2,7 @@
 
 require File.join(File.dirname(__FILE__), 'ilabs/locale_pack')
 require 'osx/cocoa'
+require 'fileutils'
 
 USE_LOG = ENV['ILABS_L0ShowOnRequestLogging'] == 'YES'
 
@@ -32,7 +33,7 @@ Dir.open(pack.base) do |dir|
           
           if not File.exist? localized_file
             $stderr.puts "Not existing, will copy #{file_path} onto #{localized_file}" if USE_LOG
-            File.cp file_path, localized_file
+            FileUtils.cp file_path, localized_file
           else
             $stderr.puts "Updating strings from #{file_path} onto #{localized_file}" if USE_LOG
             d2 = OSX::NSDictionary.dictionaryWithContentsOfFile(localized_file)
