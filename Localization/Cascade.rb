@@ -1,6 +1,6 @@
 #!/usr/bin/env ruby
 
-require 'ilabs/locale_pack'
+require File.join(File.dirname(__FILE__), 'ilabs/locale_pack')
 require 'osx/cocoa'
 
 USE_LOG = ENV['ILABS_L0ShowOnRequestLogging'] == 'YES'
