@@ -10,7 +10,8 @@ locale_dir = ARGV[0]
 
 if not locale_dir or not File.directory? locale_dir
   $stderr.puts "error: #{locale_dir} isn't a directory." if locale_dir
-  $stderr.puts "usage: Cascade <locale dir>"
+  $stderr.puts "usage: Cascade <locale dir>" #" [language to cascade to]"
+  # $stderr.puts "If language to cascade to is unspecified, all languages will be cascaded to."
   exit 1
 end
 
@@ -20,7 +21,7 @@ Dir.open(pack.base) do |dir|
   dir.entries.each do |file|
     next if file[0..0] == '.'
     file_path = File.expand_path File.join(pack.base, file)
-    $stderr.puts "Examining #{file}..." if USE_LOG
+    $stderr.puts "Examining #{file_path}..." if USE_LOG
     
     case file
       when /\.strings$/
@@ -37,12 +38,16 @@ Dir.open(pack.base) do |dir|
           else
             $stderr.puts "Updating strings from #{file_path} onto #{localized_file}" if USE_LOG
             d2 = OSX::NSDictionary.dictionaryWithContentsOfFile(localized_file)
+            d2_new = OSX::NSMutableDictionary.dictionaryWithDictionary(d)
             d2.each do |k,v|
-              d[k] = v
+              d2_new[k] = v
             end
+            
+            #$stderr.puts " -- Strings for #{localized_file}:" if USE_LOG
+            #$stderr.puts d2.descriptionInStringsFileFormat if USE_LOG
          
             File.open(localized_file, 'w') do |io|
-              io << d.descriptionInStringsFileFormat
+              io << d2_new.descriptionInStringsFileFormat
             end
           end
         end
