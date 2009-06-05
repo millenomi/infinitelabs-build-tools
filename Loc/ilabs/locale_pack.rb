@@ -14,8 +14,8 @@ module ILabs
         end
       end
     
-      base = File.join(@path, '_Base')
-      @base = base if File.directory? base
+      b = File.join(@path, '_Base')
+      @base = b if File.directory? b
     
     end
     
