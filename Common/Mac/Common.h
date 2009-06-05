@@ -38,4 +38,6 @@
 
 #define L0LogDebugIf(cond, x, ...) L0InsertIfDebug(if (cond) L0Log_PerformInline(x, ## __VA_ARGS__))
 
+#define L0AssertOutlet(x) NSAssert((x), @"Missing outlet: " #x)
+
 #endif // def __OBJC__
