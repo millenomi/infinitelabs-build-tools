@@ -4,6 +4,10 @@
 
 #ifdef __OBJC__
 
+// ===========
+// = Logging =
+// ===========
+
 // This header sets up L0Log() the same way POSIX/Common.h sets up L0Printf.
 // See that header for details.
 
@@ -38,6 +42,33 @@
 
 #define L0LogDebugIf(cond, x, ...) L0InsertIfDebug(if (cond) L0Log_PerformInline(x, ## __VA_ARGS__))
 
+
+
+// ==============
+// = Assertions =
+// ==============
+
 #define L0AssertOutlet(x) NSAssert((x), @"Missing outlet: " #x)
 
+
+// =============
+// = Shorthand =
+// =============
+
+#define L0ObjCSingletonMethod(name) \
+	+ (id) name {\
+		static id myself = nil;\
+		if (!myself)\
+			myself = [[self alloc] init];\
+		return myself;\
+	}
+	
+// Required for the __LINE__ uniquing trick.
+#define L0ConcatMacroAfterExpanding(a, b) a ## b
+#define L0ConcatMacro(a, b) L0ConcatMacroAfterExpanding(a, b)
+	
+#define L0UniquePointerConstant(name) \
+	static const int L0ConcatMacro(L0UniqueIntConstant, __LINE__) = 0;\
+	static const void* name = &L0ConcatMacro(L0UniqueIntConstant, __LINE__)
+	
 #endif // def __OBJC__
