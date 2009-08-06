@@ -42,7 +42,7 @@
 
 #define L0LogDebugIf(cond, x, ...) L0InsertIfDebug(if (cond) L0Log_PerformInline(x, ## __VA_ARGS__))
 
-
+#define L0Note() L0Log(@" -- entered --")
 
 // ==============
 // = Assertions =
@@ -69,6 +69,6 @@
 	
 #define L0UniquePointerConstant(name) \
 	static const int L0ConcatMacro(L0UniqueIntConstant, __LINE__) = 0;\
-	static const void* name = &L0ConcatMacro(L0UniqueIntConstant, __LINE__)
-	
+	static void* name = (void*) &L0ConcatMacro(L0UniqueIntConstant, __LINE__)
+
 #endif // def __OBJC__
