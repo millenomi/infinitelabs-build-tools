@@ -16,9 +16,14 @@
 // This macro should not be referenced outside this .h.
 // Use L0Log, L0LogDebug or L0LogAlways instead.
 #define L0Log_PerformInline(x, ...) \
-	NSLog(@"<DEBUG: %s> " x, __func__, ## __VA_ARGS__);
+	NSLog(@"<DEBUG: %s> " x, __func__, ## __VA_ARGS__)
 
-#define L0LogDebug(x, ...) L0InsertIfDebug(L0Log_PerformInline(x, ## __VA_ARGS__))
+#if DEBUG
+#define L0LogDebug(x, ...) L0Log_PerformInline(x, ## __VA_ARGS__)
+#else
+#define L0LogDebug(x, ...)
+#endif
+
 #define L0LogAlways(x, ...) L0Log_PerformInline(x, ## __VA_ARGS__)
 
 #if !L0LogUseOnRequestLogging
@@ -40,7 +45,11 @@
 #endif
 #endif // !L0LogUseOnRequestLogging
 
-#define L0LogDebugIf(cond, x, ...) L0InsertIfDebug(if (cond) L0Log_PerformInline(x, ## __VA_ARGS__))
+#if DEBUG
+#define L0LogDebugIf(cond, x, ...) do { if (cond) L0Log_PerformInline(x, ## __VA_ARGS__); } while (0)
+#else
+#define L0LogDebugIf(...)
+#endif
 
 #define L0Note() L0Log(@" -- entered --")
 
