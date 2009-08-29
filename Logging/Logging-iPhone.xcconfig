@@ -1,3 +1,5 @@
 #include "Logging-Common.xcconfig"
 
 GCC_PREFIX_HEADER = $(SRCROOT)/../Common/iPhone/Foundation.pch
+SDKROOT = iphoneos3.0
+IPHONEOS_DEPLOYMENT_TARGET = 2.2

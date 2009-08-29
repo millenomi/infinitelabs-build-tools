@@ -311,11 +311,9 @@
 				COPY_PHASE_STRIP = NO;
 				GCC_DYNAMIC_NO_PIC = NO;
 				GCC_OPTIMIZATION_LEVEL = 0;
-				IPHONEOS_DEPLOYMENT_TARGET = 2.2;
 				ONLY_ACTIVE_ARCH = NO;
 				PREBINDING = NO;
 				PRODUCT_NAME = "Logging-iPhone";
-				SDKROOT = iphoneos3.0;
 			};
 			name = Debug;
 		};
@@ -330,7 +328,6 @@
 				ONLY_ACTIVE_ARCH = NO;
 				PREBINDING = NO;
 				PRODUCT_NAME = "Logging-iPhone";
-				SDKROOT = iphoneos2.2;
 				ZERO_LINK = NO;
 			};
 			name = Release;
