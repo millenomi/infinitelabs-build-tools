@@ -95,3 +95,13 @@
 #if L0LogUseOnRequestLogging && !L0LogIsBuilding
 #include <L0Log/L0Printf.h>
 #endif
+
+// Required for the __LINE__ uniquing trick.
+#define L0ConcatMacroAfterExpanding(a, b) a ## b
+#define L0ConcatMacro(a, b) L0ConcatMacroAfterExpanding(a, b)
+
+// Produces a unique pointer constant.	
+#define L0UniquePointerConstant(name) \
+	static const uint8_t L0ConcatMacro(L0UniqueIntConstant, __LINE__) = 0;\
+	static void* name = (void*) &L0ConcatMacro(L0UniqueIntConstant, __LINE__)
+

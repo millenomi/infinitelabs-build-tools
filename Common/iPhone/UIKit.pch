@@ -3,6 +3,7 @@
 #import "Common.h"
 
 #ifdef __OBJC__
+#if TARGET_OS_IPHONE
 	#import <UIKit/UIKit.h>
 
 static inline CGRect L0UIKeyboardGetBounds(NSNotification* keyboardNotification) {
@@ -31,4 +32,5 @@ static inline CGRect L0UIKeyboardGetFrameForKey(NSNotification* keyboardNotifica
 
 #define UIApp ([UIApplication sharedApplication])
 
-#endif
+#endif // TARGET_OS_IPHONE
+#endif // __OBJC__

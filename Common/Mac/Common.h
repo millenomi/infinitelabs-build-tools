@@ -59,6 +59,7 @@
 
 #define L0AssertOutlet(x) NSAssert((x), @"Missing outlet: " #x)
 
+#define L0AbstractMethod() [NSException raise:@"L0AbstractMethodCalledException" format:@"%s was not implemented by a subclass ([self class] = %@)", __func__, [self class]]
 
 // =============
 // = Shorthand =
@@ -72,12 +73,4 @@
 		return myself;\
 	}
 	
-// Required for the __LINE__ uniquing trick.
-#define L0ConcatMacroAfterExpanding(a, b) a ## b
-#define L0ConcatMacro(a, b) L0ConcatMacroAfterExpanding(a, b)
-	
-#define L0UniquePointerConstant(name) \
-	static const int L0ConcatMacro(L0UniqueIntConstant, __LINE__) = 0;\
-	static void* name = (void*) &L0ConcatMacro(L0UniqueIntConstant, __LINE__)
-
 #endif // def __OBJC__
