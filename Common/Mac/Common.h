@@ -73,4 +73,30 @@
 		return myself;\
 	}
 	
+#define L0PrivateSetterNamedForKey(name, type, variable, key, action) \
+	- (void) name (type) newValue_ {\
+		[self willChangeValueForKey:key];\
+		if (newValue_ != variable) {\
+			[variable release];\
+			variable = [newValue_ action];\
+		}\
+		[self didChangeValueForKey:key];\
+	}
+	
+#define L0PrivateSetter(name, type, key) \
+	L0PrivateSetterNamedForKey(name, type, key, @#key, retain)
+
+#define L0PrivateCopySetter(name, type, key) \
+	L0PrivateSetterNamedForKey(name, type, key, @#key, copy)
+
+#define L0PrivateAssignSetterNamedForKey(name, type, variable, key) \
+	- (void) name (type) newValue_ {\
+		[self willChangeValueForKey:key];\
+		variable = newValue_;\
+		[self didChangeValueForKey:key];\
+	}
+
+#define L0PrivateAssignSetter(name, type, key) \
+	L0PrivateAssignSetterNamedForKey(name, type, @#key, key)
+
 #endif // def __OBJC__
