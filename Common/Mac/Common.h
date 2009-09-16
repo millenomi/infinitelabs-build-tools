@@ -28,7 +28,8 @@
 
 #if !L0LogUseOnRequestLogging
 // #warning Defining L0Log as L0LogDebug -- use libLogging.a instead if you want real on-request logging.
-#define L0Log(x, ...) L0LogDebug(x, ## __VA_ARGS__)
+#define L0Log(x, ...) L0LogDebug(@"(self: %@)\n" x @"\n\n", self, ## __VA_ARGS__)
+#define L0CLog(x, ...) L0LogDebug(x, ## __VA_ARGS__)
 
 // L0LogShouldShowOnRequestLoggingObjC in libLogging* can access defaults,
 // not just the environment. Use it if you want to control L0Log rather than L0Printf.
