@@ -13,6 +13,8 @@
 
 #import <Foundation/Foundation.h>
 
+#if !kL0LogDisableMacrosAndOnRequest
+
 // This macro should not be referenced outside this .h.
 // Use L0Log, L0LogDebug or L0LogAlways instead.
 #define L0Log_PerformInline(x, ...) \
@@ -52,7 +54,9 @@
 #define L0LogDebugIf(...)
 #endif
 
-#define L0Note() L0Log(@" -- entered --")
+#endif // !kL0LogDisableMacrosAndOnRequest
+
+#define L0Note() L0Log(@" -- entered -- ")
 
 // ==============
 // = Assertions =
