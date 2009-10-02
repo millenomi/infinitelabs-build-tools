@@ -104,4 +104,18 @@
 #define L0PrivateAssignSetter(name, type, key) \
 	L0PrivateAssignSetterNamedForKey(name, type, @#key, key)
 
+#define L0LogAtRetain() \
+	- (id) retain;\
+	{\
+		L0Log(@"Retained.");\
+		return [super retain];\
+	}
+
+#define L0LogAtRelease() \
+	- (oneway void) release;\
+	{\
+		L0Log(@"Released.");\
+		[super release];\
+	}
+	
 #endif // def __OBJC__
