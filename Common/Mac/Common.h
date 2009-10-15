@@ -118,4 +118,24 @@
 		[super release];\
 	}
 	
+#define L0AsClass(cls, value) \
+	({ id v_ = (value); \
+	  [v_ isKindOfClass:(cls)]? v_ : nil; })
+#define L0As(cls, value) \
+	L0AsClass([cls class], value)
+
+#define L0SynthesizeUserDefaultsGetter(cls, key, name) \
+	- (cls*) name \
+	{ \
+		id o = [[NSUserDefaults standardUserDefaults] objectForKey:(key)]; \
+		if (![o isKindOfClass:[cls class]]) o = nil; \
+		return o; \
+	} \
+
+#define L0SynthesizeUserDefaultsSetter(cls, key, setterName) \
+	- (void) setterName (cls*) v_ \
+	{ \
+		[[NSUserDefaults standardUserDefaults] setObject:v_ forKey:(key)]; \
+	}
+
 #endif // def __OBJC__
