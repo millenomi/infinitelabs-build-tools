@@ -138,4 +138,11 @@
 		[[NSUserDefaults standardUserDefaults] setObject:v_ forKey:(key)]; \
 	}
 
+#define ILAssertNoNSError(errVarName, call) \
+	{ \
+		NSError* errVarName; \
+		if (!(call)) \
+			[NSException raise:@"ILUnexpectedNSErrorException" format:@"Operation " #call " failed with error %@", errVarName]; \
+	}
+
 #endif // def __OBJC__
